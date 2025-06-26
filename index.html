@@ -62,7 +62,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop');
+            background-image: url('https://images.unsplash.com/photo-1543362906-acfc16c67564?q=80&w=1965&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             z-index: -2;
@@ -70,7 +70,6 @@
 
         .parallax-element {
             position: absolute;
-            transition: transform 0.2s ease-out;
             will-change: transform;
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
         }
@@ -84,17 +83,6 @@
         #veg-6 { top: 50%; left: 20%; width: 60px; } 
         #veg-7 { top: 20%; left: 40%; width: 90px; } 
         #juice-glass { bottom: 5%; left: 50%; transform: translateX(-50%); width: 150px; z-index: 10;}
-
-        /* Section transition */
-        .section-reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .section-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
 
         /* Swiper Carousel Styles */
         .swiper-slide {
@@ -119,6 +107,9 @@
             border-radius: 1rem;
             padding: 1.5rem;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         .stars { color: #facc15; }
 
@@ -149,7 +140,7 @@
     <nav id="navbar">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#">
-                <img src="images/logo_6daysofsalad.png" alt="6 Days of Salad Logo" class="h-12" onerror="this.src='https://placehold.co/150x50/FFFFFF/000000?text=6+Days+of+Salad'">
+                <img src="https://placehold.co/150x50/FFFFFF/84CC16?text=6+Days+of+Salad" alt="6 Days of Salad Logo" class="h-12" onerror="this.src='https://placehold.co/150x50/FFFFFF/000000?text=6+Days+of+Salad'">
             </a>
             <div class="hidden md:flex space-x-6 lg:space-x-8 text-sm lg:text-base">
                 <a href="#menu" class="text-gray-700 hover:text-lime-600 font-semibold">Menu</a>
@@ -167,20 +158,20 @@
     <header class="parallax-container text-white">
         <div class="parallax-bg"></div>
         <!-- Floating Veggies -->
-        <img src="https://img.icons8.com/plasticine/100/lettuce.png" onerror="this.style.display='none'" id="veg-1" class="parallax-element" alt="Floating lettuce">
-        <img src="https://img.icons8.com/plasticine/100/tomato.png" onerror="this.style.display='none'" id="veg-2" class="parallax-element" alt="Floating tomato">
-        <img src="https://img.icons8.com/plasticine/100/cucumber.png" onerror="this.style.display='none'" id="veg-3" class="parallax-element" alt="Floating cucumber">
-        <img src="https://img.icons8.com/plasticine/100/carrot.png" onerror="this.style.display='none'" id="veg-4" class="parallax-element" alt="Floating carrot">
-        <img src="https://img.icons8.com/plasticine/100/olive.png" onerror="this.style.display='none'" id="veg-5" class="parallax-element" alt="Floating olive">
-        <img src="https://img.icons8.com/plasticine/100/feta-cheese.png" onerror="this.style.display='none'" id="veg-6" class="parallax-element" alt="Floating feta cheese">
-        <img src="https://img.icons8.com/plasticine/100/avocado.png" onerror="this.style.display='none'" id="veg-7" class="parallax-element" alt="Floating avocado">
-        <img src="https://img.icons8.com/plasticine/200/orange-juice.png" onerror="this.style.display='none'" id="juice-glass" class="parallax-element" alt="Glass of juice">
+        <img src="https://img.icons8.com/plasticine/100/lettuce.png" onerror="this.style.display='none'" id="veg-1" class="parallax-element" alt="Floating lettuce" data-speed="0.7">
+        <img src="https://img.icons8.com/plasticine/100/tomato.png" onerror="this.style.display='none'" id="veg-2" class="parallax-element" alt="Floating tomato" data-speed="0.4">
+        <img src="https://img.icons8.com/plasticine/100/cucumber.png" onerror="this.style.display='none'" id="veg-3" class="parallax-element" alt="Floating cucumber" data-speed="0.6">
+        <img src="https://img.icons8.com/plasticine/100/carrot.png" onerror="this.style.display='none'" id="veg-4" class="parallax-element" alt="Floating carrot" data-speed="0.3">
+        <img src="https://img.icons8.com/plasticine/100/olive.png" onerror="this.style.display='none'" id="veg-5" class="parallax-element" alt="Floating olive" data-speed="0.55">
+        <img src="https://img.icons8.com/plasticine/100/feta-cheese.png" onerror="this.style.display='none'" id="veg-6" class="parallax-element" alt="Floating feta cheese" data-speed="0.8">
+        <img src="https://img.icons8.com/plasticine/100/avocado.png" onerror="this.style.display='none'" id="veg-7" class="parallax-element" alt="Floating avocado" data-speed="0.25">
+        <img src="https://img.icons8.com/plasticine/200/orange-juice.png" onerror="this.style.display='none'" id="juice-glass" class="parallax-element" alt="Glass of juice" data-speed="0.9">
         
         <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center p-4">
-            <img src="images/logo_6daysofsalad.png" alt="6 Days of Salad Logo" class="h-24 md:h-32 mb-4 drop-shadow-lg" onerror="this.style.display='none'">
-            <h1 class="font-display text-4xl md:text-6xl font-bold drop-shadow-lg">Freshness in Every Bowl</h1>
-            <p class="mt-4 text-lg md:text-2xl max-w-2xl drop-shadow-md">Healthy, delicious, and delivered right to your door. Your daily dose of goodness starts here.</p>
-            <a href="#menu" class="mt-8 bg-lime-500 hover:bg-lime-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+            <img id="hero-logo" src="https://placehold.co/200x80/FFFFFF/84CC16?text=6+Days+of+Salad" alt="6 Days of Salad Logo" class="h-24 md:h-32 mb-4 drop-shadow-lg" onerror="this.style.display='none'">
+            <h1 id="hero-title" class="font-display text-4xl md:text-6xl font-bold drop-shadow-lg">Freshness in Every Bowl</h1>
+            <p id="hero-subtitle" class="mt-4 text-lg md:text-2xl max-w-2xl drop-shadow-md">Healthy, delicious, and delivered right to your door. Your daily dose of goodness starts here.</p>
+            <a id="hero-button" href="#menu" class="mt-8 bg-lime-500 hover:bg-lime-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
                 Explore The Menu
             </a>
         </div>
@@ -188,17 +179,17 @@
 
     <main>
         <!-- Menu Carousel Section -->
-        <section id="menu" class="py-16 md:py-24 section-reveal">
+        <section id="menu" class="py-16 md:py-24">
             <div class="container mx-auto px-0 md:px-6">
                 <!-- Salad Bowls Carousel -->
                 <div class="mb-16">
-                    <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-8">Fresh & Crisp Bowls</h2>
+                    <h2 class="section-title text-3xl md:text-4xl font-display text-center text-gray-800 mb-8">Fresh & Crisp Bowls</h2>
                     <div class="swiper menu-swiper">
                         <div class="swiper-wrapper">
                             <!-- Slides -->
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Chicken Caesar Salad"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Chicken Caesar Salad</h3><div class="text-lg font-bold text-lime-600 mt-2">₹229</div></div></div></div>
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1594041682383-60600155b2ce?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="The Olympian Bowl"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">The Olympian Bowl</h3><div class="text-lg font-bold text-lime-600 mt-2">₹249</div></div></div></div>
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Gut Health Bowl"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Gut Health Bowl</h3><div class="text-lg font-bold text-lime-600 mt-2">₹239</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1547592180-85f1d35a1627?q=80&w=600&h=400&auto=format&fit=crop&ixlib=rb-4.0.3" class="w-full h-48 object-cover" alt="Chicken Caesar Salad"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Chicken Caesar Salad</h3><div class="text-lg font-bold text-lime-600 mt-2">₹229</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1551248429-40974011e723?q=80&w=600&h=400&auto=format&fit=crop&ixlib=rb-4.0.3" class="w-full h-48 object-cover" alt="The Olympian Bowl"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">The Olympian Bowl</h3><div class="text-lg font-bold text-lime-600 mt-2">₹249</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1592415522399-6511a7985459?q=80&w=600&h=400&auto=format&fit=crop&ixlib=rb-4.0.3" class="w-full h-48 object-cover" alt="Gut Health Bowl"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Gut Health Bowl</h3><div class="text-lg font-bold text-lime-600 mt-2">₹239</div></div></div></div>
                         </div>
                         <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                     </div>
@@ -206,52 +197,84 @@
 
                 <!-- Sandwiches Carousel -->
                 <div class="mb-16">
-                    <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-8">Wholesome Sandwiches</h2>
+                    <h2 class="section-title text-3xl md:text-4xl font-display text-center text-gray-800 mb-8">Wholesome Sandwiches</h2>
                     <div class="swiper menu-swiper">
                         <div class="swiper-wrapper">
                              <!-- Slides -->
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1592487498059-0e9c3752e633?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Tandoori Paneer Sandwich"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Tandoori Paneer Sandwich</h3><div class="text-lg font-bold text-lime-600 mt-2">₹199</div></div></div></div>
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c766?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Grilled Chicken Pesto Sandwich"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Grilled Chicken Pesto</h3><div class="text-lg font-bold text-lime-600 mt-2">₹229</div></div></div></div>
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1549572099-e3056a83694b?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Creamy Corn & Spinach Sandwich"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Creamy Corn & Spinach</h3><div class="text-lg font-bold text-lime-600 mt-2">₹189</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1643210078345-e692150b3871?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Tandoori Paneer Sandwich"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Tandoori Paneer Sandwich</h3><div class="text-lg font-bold text-lime-600 mt-2">₹199</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1627907222043-9c1a5d853830?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Grilled Chicken Pesto Sandwich"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Grilled Chicken Pesto</h3><div class="text-lg font-bold text-lime-600 mt-2">₹229</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1619482298535-6d6c074a4a5e?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Creamy Corn & Spinach Sandwich"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Creamy Corn & Spinach</h3><div class="text-lg font-bold text-lime-600 mt-2">₹189</div></div></div></div>
                         </div>
                         <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                     </div>
                 </div>
 
                 <!-- Beverages Carousel -->
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-8">Beverages & Smoothies</h2>
+                <div class="mb-16">
+                    <h2 class="section-title text-3xl md:text-4xl font-display text-center text-gray-800 mb-8">Beverages & Smoothies</h2>
                     <div class="swiper menu-swiper">
                         <div class="swiper-wrapper">
                             <!-- Slides -->
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1630176378958-302a28e57827?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="The Hulk Smoothie"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">The Hulk Smoothie</h3><div class="text-lg font-bold text-lime-600 mt-2">₹169</div></div></div></div>
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1577805947697-89e1824a876f?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Berry Blast Smoothie"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Berry Blast Smoothie</h3><div class="text-lg font-bold text-lime-600 mt-2">₹159</div></div></div></div>
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1517701550927-4e4a36736b84?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Classic Cold Coffee"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Classic Cold Coffee</h3><div class="text-lg font-bold text-lime-600 mt-2">₹129</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1600885144640-3cf14a134d1d?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="The Hulk Smoothie"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">The Hulk Smoothie</h3><div class="text-lg font-bold text-lime-600 mt-2">₹169</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?q=80&w=600&h=400&auto=format&fit=crop&ixlib=rb-4.0.3" class="w-full h-48 object-cover" alt="Berry Blast Smoothie"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Berry Blast Smoothie</h3><div class="text-lg font-bold text-lime-600 mt-2">₹159</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?q=80&w=600&h=400&auto=format&fit=crop&ixlib=rb-4.0.3" class="w-full h-48 object-cover" alt="Classic Cold Coffee"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Classic Cold Coffee</h3><div class="text-lg font-bold text-lime-600 mt-2">₹129</div></div></div></div>
                         </div>
                         <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                     </div>
+                </div>
+                <!-- Menu Download Button -->
+                <div class="text-center">
+                    <a href="menu_flyer.pdf" download="6-Days-of-Salad-Menu.pdf" class="inline-block bg-lime-600 hover:bg-lime-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+                       <i class="fas fa-download mr-2"></i> Download Menu
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="py-16 md:py-24 bg-lime-50 section-reveal">
+        <section id="testimonials" class="py-16 md:py-24 bg-lime-50">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-12">What Our Customers Say</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="testimonial-card"><div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-600">"Paneer salad bowl mein ingredients fresh lage. Portion bhi fulfilling tha. Taste mild tha but balanced. Daily lunch ke liye kaafi acha option hai."</p></div>
-                    <div class="testimonial-card"><div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><p class="text-gray-600">"Chicken salad bowl liya tha. Veggies crisp thi, grilled chicken bhi well cooked tha. Ek point kam kar raha hoon kyunki thoda dressing kam laga."</p></div>
-                    <div class="testimonial-card"><div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div><p class="text-gray-600">"Sandwich ka bread soft tha aur filling bhi theek thi, lekin thoda aur flavour hota toh better lagta. Still better than most places."</p></div>
+                <h2 class="section-title text-3xl md:text-4xl font-display text-center text-gray-800 mb-12">What Our Customers Say</h2>
+                <div class="swiper testimonial-swiper">
+                    <div class="swiper-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <p class="text-gray-600 flex-grow">"Paneer salad bowl mein ingredients fresh lage. Portion bhi fulfilling tha. Taste mild tha but balanced. Daily lunch ke liye kaafi acha option hai."</p>
+                                <p class="text-right font-bold text-gray-800 mt-4">- Aarav Sharma</p>
+                                <p class="text-right text-sm text-gray-500">DLF Phase 3, Gurugram</p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                                <p class="text-gray-600 flex-grow">"Chicken salad bowl liya tha. Veggies crisp thi, grilled chicken bhi well cooked tha. Ek point kam kar raha hoon kyunki thoda dressing kam laga."</p>
+                                <p class="text-right font-bold text-gray-800 mt-4">- Priya Singh</p>
+                                <p class="text-right text-sm text-gray-500">Sector 54, Gurugram</p>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide">
+                           <div class="testimonial-card">
+                                <div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                                <p class="text-gray-600 flex-grow">"Sandwich ka bread soft tha aur filling bhi theek thi, lekin thoda aur flavour hota toh better lagta. Still better than most places."</p>
+                                <p class="text-right font-bold text-gray-800 mt-4">- Rohan Mehta</p>
+                                <p class="text-right text-sm text-gray-500">Sohna Road, Gurugram</p>
+                           </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Bulk Order Calculator Section -->
-        <section id="bulk-order" class="py-16 md:py-24 bg-white section-reveal">
+        <section id="bulk-order" class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-4">Corporate & Bulk Orders</h2>
-                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Fuel your team with healthy meals. Calculate an estimated price for your bulk order instantly.</p>
-                <div class="max-w-3xl mx-auto bg-gray-50 p-8 rounded-2xl shadow-inner">
+                <h2 class="section-title text-3xl md:text-4xl font-display text-center text-gray-800 mb-4">Corporate & Bulk Orders</h2>
+                <p class="section-subtitle text-center text-gray-600 max-w-2xl mx-auto mb-12">Fuel your team with healthy meals. Calculate an estimated price for your bulk order instantly.</p>
+                <div class="max-w-3xl mx-auto bg-gray-50 p-8 rounded-2xl shadow-inner calculator-container">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         <!-- Left Side: Inputs -->
                         <div>
@@ -282,50 +305,15 @@
             </div>
         </section>
 
-        <!-- Google Reviews Section -->
-        <section class="py-16 md:py-24 bg-gray-50 section-reveal">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-2">Loved by Foodies</h2>
-                <div class="text-center mb-12">
-                    <span class="font-bold text-xl text-gray-700">Google</span>
-                    <span class="text-yellow-500"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
-                    <span class="text-gray-600">4.8 (250+ reviews)</span>
-                </div>
-                <!-- This is a visual representation. Not a live embed. -->
-                <div class="relative rounded-lg overflow-hidden h-64 md:h-80">
-                     <img src="https://placehold.co/1200x400/e0e0e0/a0a0a0?text=Map+of+Gurugram+(Placeholder)" class="w-full h-full object-cover" alt="Map of Gurugram">
-                     <div class="absolute inset-0 bg-black/20"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Instagram Section -->
-        <section id="instagram" class="py-16 md:py-24 section-reveal">
-             <div class="container mx-auto px-6 text-center">
-                 <a href="https://www.instagram.com/6daysofsalad/" target="_blank" class="text-gray-800 hover:text-lime-600 transition">
-                    <i class="fab fa-instagram text-4xl"></i>
-                    <h2 class="text-3xl md:text-4xl font-display mt-2">Follow @6daysofsalad</h2>
-                 </a>
-                 <p class="text-center text-gray-600 max-w-2xl mx-auto my-4">Get your daily dose of freshness on your feed. Follow us for offers, new launches, and more!</p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mt-8">
-                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=400&h=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=400&h=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=400&h=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17021?q=80&w=400&h=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg aspect-square">
-                </div>
-             </div>
-        </section>
-
-
         <!-- Contact Section -->
-        <section id="contact" class="py-16 md:py-24 bg-lime-50 section-reveal">
+        <section id="contact" class="py-16 md:py-24 bg-lime-50">
              <div class="container mx-auto px-6 text-center">
-                 <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-4">Ready to Order?</h2>
-                 <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Contact us to place an order or for corporate enquiries. We're here to help!</p>
-                 <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                 <h2 class="section-title text-3xl md:text-4xl font-display text-center text-gray-800 mb-4">Ready to Order?</h2>
+                 <p class="section-subtitle text-center text-gray-600 max-w-2xl mx-auto mb-12">Contact us to place an order or for corporate enquiries. We're here to help!</p>
+                 <div class="flex flex-col md:flex-row justify-center items-center gap-8 contact-container">
                     <!-- QR Code -->
                     <div class="text-center">
-                        <img src="images/qrcode_6daysofsalad.png" alt="QR Code for WhatsApp" class="h-40 w-40 mx-auto rounded-lg shadow-md" onerror="this.src='https://placehold.co/160x160/000000/FFFFFF?text=QR+Code'">
+                        <img src="https://placehold.co/160x160/000000/FFFFFF?text=Scan+for+WhatsApp" alt="QR Code for WhatsApp" class="h-40 w-40 mx-auto rounded-lg shadow-md" onerror="this.src='https://placehold.co/160x160/000000/FFFFFF?text=QR+Code'">
                         <p class="mt-2 font-semibold text-gray-700">Scan for WhatsApp</p>
                     </div>
                     <!-- Buttons -->
@@ -344,7 +332,8 @@
     
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-6 text-center">
-            <div class="mb-4">
+            <p class="text-lg font-bold">6 Days of Salad</p>
+            <div class="my-4">
                  <a href="https://www.instagram.com/6daysofsalad/" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
             </div>
             <p>&copy; 2025 6 Days of Salad. All Rights Reserved.</p>
@@ -352,94 +341,195 @@
         </div>
     </footer>
 
+    <!-- JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <script>
-        // --- Navbar Scroll Effect ---
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // --- Parallax Scrolling Effect ---
-        document.addEventListener('scroll', function() {
-            const scrollY = window.scrollY;
-            const parallaxElements = document.querySelectorAll('.parallax-element');
-            
-            parallaxElements.forEach(el => {
-                let speed = 0.5;
-                if (el.id === 'veg-1') speed = 0.7; if (el.id === 'veg-2') speed = 0.4;
-                if (el.id === 'veg-3') speed = 0.6; if (el.id === 'veg-4') speed = 0.3;
-                if (el.id === 'veg-5') speed = 0.55; if (el.id === 'veg-6') speed = 0.8;
-                if (el.id === 'veg-7') speed = 0.25; if (el.id === 'juice-glass') speed = 0.9;
-                
-                const moveY = -(scrollY * speed);
-                const moveX = (el.id.includes('veg-2') || el.id.includes('veg-4') || el.id.includes('veg-5')) ? (scrollY * speed * 0.1) : -(scrollY * speed * 0.1);
-                
-                el.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
-            });
-        });
-
-        // --- Section Reveal on Scroll ---
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Navbar Scroll Effect ---
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
                 }
             });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.section-reveal').forEach(section => revealObserver.observe(section));
 
-        // --- Menu Carousel Initialization ---
-        const swiper = new Swiper('.menu-swiper', {
-            loop: true,
-            slidesPerView: 1,
-            spaceBetween: 10,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                640: { slidesPerView: 2, spaceBetween: 20 },
-                1024: { slidesPerView: 3, spaceBetween: 30 },
+            // --- Menu Carousel Initialization ---
+            const menuSwiper = new Swiper('.menu-swiper', {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    640: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 3, spaceBetween: 30 },
+                }
+            });
+
+            // --- Testimonial Carousel Initialization ---
+            const testimonialSwiper = new Swiper('.testimonial-swiper', {
+                loop: true,
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                slidesPerView: 1,
+                spaceBetween: 30,
+                breakpoints: {
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                }
+            });
+
+            // --- Bulk Order Calculator Logic ---
+            const employeeSlider = document.getElementById('employees');
+            const employeeCountSpan = document.getElementById('employee-count');
+            const itemSelect = document.getElementById('menu-item-select');
+            const totalPriceDisplay = document.getElementById('total-price-display');
+            const effectivePriceDisplay = document.getElementById('effective-price-display');
+            const discountPercentDisplay = document.getElementById('discount-percent');
+
+            function calculateBulkPrice() {
+                const mealCount = parseInt(employeeSlider.value);
+                const itemPrice = parseInt(itemSelect.value);
+                
+                let discount = 0;
+                if (mealCount > 200) discount = 0.50;
+                else if (mealCount > 100) discount = 0.40;
+                else if (mealCount > 50) discount = 0.30;
+                else if (mealCount > 20) discount = 0.20;
+                else if (mealCount > 5) discount = 0.10;
+
+                const total = (mealCount * itemPrice) * (1 - discount);
+                const effectivePrice = total / mealCount;
+
+                // Update UI
+                employeeCountSpan.textContent = mealCount;
+                totalPriceDisplay.textContent = `₹${Math.round(total).toLocaleString('en-IN')}`;
+                effectivePriceDisplay.textContent = `Effective Price: ₹${effectivePrice.toFixed(2)}/meal`;
+                discountPercentDisplay.textContent = `${Math.round(discount * 100)}%`;
             }
-        });
-
-        // --- Bulk Order Calculator Logic ---
-        const employeeSlider = document.getElementById('employees');
-        const employeeCountSpan = document.getElementById('employee-count');
-        const itemSelect = document.getElementById('menu-item-select');
-        const totalPriceDisplay = document.getElementById('total-price-display');
-        const effectivePriceDisplay = document.getElementById('effective-price-display');
-        const discountPercentDisplay = document.getElementById('discount-percent');
-
-        function calculateBulkPrice() {
-            const mealCount = parseInt(employeeSlider.value);
-            const itemPrice = parseInt(itemSelect.value);
             
-            let discount = 0;
-            if (mealCount > 200) discount = 0.50;
-            else if (mealCount > 100) discount = 0.40;
-            else if (mealCount > 50) discount = 0.30;
-            else if (mealCount > 20) discount = 0.20;
-            else if (mealCount > 5) discount = 0.10;
+            employeeSlider.addEventListener('input', calculateBulkPrice);
+            itemSelect.addEventListener('change', calculateBulkPrice);
+            calculateBulkPrice(); // Initial calculation on load
 
-            const total = (mealCount * itemPrice) * (1 - discount);
-            const effectivePrice = total / mealCount;
+            // --- GSAP Animations ---
+            gsap.registerPlugin(ScrollTrigger);
 
-            // Update UI
-            employeeCountSpan.textContent = mealCount;
-            totalPriceDisplay.textContent = `₹${Math.round(total).toLocaleString('en-IN')}`;
-            effectivePriceDisplay.textContent = `Effective Price: ₹${effectivePrice.toFixed(2)}/meal`;
-            discountPercentDisplay.textContent = `${Math.round(discount * 100)}%`;
-        }
-        
-        employeeSlider.addEventListener('input', calculateBulkPrice);
-        itemSelect.addEventListener('change', calculateBulkPrice);
-        document.addEventListener('DOMContentLoaded', calculateBulkPrice);
+            // 1. Hero Section Animation
+            const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            heroTl.from('#hero-logo', { opacity: 0, scale: 0.5, duration: 0.8, delay: 0.2 })
+                  .from('#hero-title', { opacity: 0, y: 30, duration: 0.6 }, '-=0.4')
+                  .from('#hero-subtitle', { opacity: 0, y: 30, duration: 0.6 }, '-=0.4')
+                  .from('#hero-button', { opacity: 0, y: 30, duration: 0.6 }, '-=0.4');
+
+            // 2. Parallax Veggies Animation
+            gsap.utils.toArray('.parallax-element').forEach(el => {
+                gsap.to(el, {
+                    y: (i, target) => -ScrollTrigger.maxScroll(window) * target.dataset.speed,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.parallax-container',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: true,
+                    }
+                });
+            });
+
+            // 3. Section Title & Subtitle Reveal
+            gsap.utils.toArray('.section-title').forEach(title => {
+                gsap.from(title, {
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: title,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+             gsap.utils.toArray('.section-subtitle').forEach(subtitle => {
+                gsap.from(subtitle, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.8,
+                    delay: 0.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: subtitle,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+            // 4. Staggered Menu Cards Reveal
+            gsap.utils.toArray('.menu-swiper').forEach(swiperContainer => {
+                gsap.from(swiperContainer.querySelectorAll('.menu-card'), {
+                    opacity: 0,
+                    y: 60,
+                    stagger: 0.15,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: swiperContainer,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+            // 5. Testimonials Carousel Reveal
+            gsap.from('.testimonial-swiper', {
+                opacity: 0,
+                y: 60,
+                duration: 0.7,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '#testimonials',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+            
+            // 6. Bulk Calculator Reveal
+            gsap.from('.calculator-container', {
+                opacity: 0,
+                scale: 0.95,
+                duration: 1,
+                ease: 'expo.out',
+                scrollTrigger: {
+                    trigger: '.calculator-container',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            // 7. Contact section reveal
+             gsap.from('.contact-container', {
+                opacity: 0,
+                y: 80,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.contact-container',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
     </script>
 </body>
 </html>
