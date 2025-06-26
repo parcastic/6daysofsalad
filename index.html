@@ -25,6 +25,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #FEFDF8; /* Off-white background */
             color: #3C3C3C;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
         }
 
         .font-display {
@@ -62,7 +63,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1543362906-acfc16c67564?q=80&w=1965&auto=format&fit=crop');
+            background-image: url('https://images.unsplash.com/photo-1600335895229-6e75511892c8?q=80&w=1374&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             z-index: -2;
@@ -140,7 +141,7 @@
     <nav id="navbar">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#">
-                <img src="https://placehold.co/150x50/FFFFFF/84CC16?text=6+Days+of+Salad" alt="6 Days of Salad Logo" class="h-12" onerror="this.src='https://placehold.co/150x50/FFFFFF/000000?text=6+Days+of+Salad'">
+                <img src="images/logo_6daysofsalad.png" alt="6 Days of Salad Logo" class="h-12" onerror="this.src='https://placehold.co/150x50/FFFFFF/000000?text=6+Days+of+Salad'">
             </a>
             <div class="hidden md:flex space-x-6 lg:space-x-8 text-sm lg:text-base">
                 <a href="#menu" class="text-gray-700 hover:text-lime-600 font-semibold">Menu</a>
@@ -158,17 +159,19 @@
     <header class="parallax-container text-white">
         <div class="parallax-bg"></div>
         <!-- Floating Veggies -->
-        <img src="https://img.icons8.com/plasticine/100/lettuce.png" onerror="this.style.display='none'" id="veg-1" class="parallax-element" alt="Floating lettuce" data-speed="0.7">
-        <img src="https://img.icons8.com/plasticine/100/tomato.png" onerror="this.style.display='none'" id="veg-2" class="parallax-element" alt="Floating tomato" data-speed="0.4">
-        <img src="https://img.icons8.com/plasticine/100/cucumber.png" onerror="this.style.display='none'" id="veg-3" class="parallax-element" alt="Floating cucumber" data-speed="0.6">
-        <img src="https://img.icons8.com/plasticine/100/carrot.png" onerror="this.style.display='none'" id="veg-4" class="parallax-element" alt="Floating carrot" data-speed="0.3">
-        <img src="https://img.icons8.com/plasticine/100/olive.png" onerror="this.style.display='none'" id="veg-5" class="parallax-element" alt="Floating olive" data-speed="0.55">
-        <img src="https://img.icons8.com/plasticine/100/feta-cheese.png" onerror="this.style.display='none'" id="veg-6" class="parallax-element" alt="Floating feta cheese" data-speed="0.8">
-        <img src="https://img.icons8.com/plasticine/100/avocado.png" onerror="this.style.display='none'" id="veg-7" class="parallax-element" alt="Floating avocado" data-speed="0.25">
-        <img src="https://img.icons8.com/plasticine/200/orange-juice.png" onerror="this.style.display='none'" id="juice-glass" class="parallax-element" alt="Glass of juice" data-speed="0.9">
+        <div id="floating-veggies-container">
+            <img src="https://img.icons8.com/plasticine/100/lettuce.png" onerror="this.style.display='none'" id="veg-1" class="parallax-element" alt="Floating lettuce" data-speed="0.7">
+            <img src="https://img.icons8.com/plasticine/100/tomato.png" onerror="this.style.display='none'" id="veg-2" class="parallax-element" alt="Floating tomato" data-speed="0.4">
+            <img src="https://img.icons8.com/plasticine/100/cucumber.png" onerror="this.style.display='none'" id="veg-3" class="parallax-element" alt="Floating cucumber" data-speed="0.6">
+            <img src="https://img.icons8.com/plasticine/100/carrot.png" onerror="this.style.display='none'" id="veg-4" class="parallax-element" alt="Floating carrot" data-speed="0.3">
+            <img src="https://img.icons8.com/plasticine/100/olive.png" onerror="this.style.display='none'" id="veg-5" class="parallax-element" alt="Floating olive" data-speed="0.55">
+            <img src="https://img.icons8.com/plasticine/100/feta-cheese.png" onerror="this.style.display='none'" id="veg-6" class="parallax-element" alt="Floating feta cheese" data-speed="0.8">
+            <img src="https://img.icons8.com/plasticine/100/avocado.png" onerror="this.style.display='none'" id="veg-7" class="parallax-element" alt="Floating avocado" data-speed="0.25">
+            <img src="https://img.icons8.com/plasticine/200/orange-juice.png" onerror="this.style.display='none'" id="juice-glass" class="parallax-element" alt="Glass of juice" data-speed="0.9">
+        </div>
         
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center p-4">
-            <img id="hero-logo" src="images/logo_6daysofsalad.png" alt="6 Days of Salad Logo" class="h-24 md:h-32 mb-4 drop-shadow-lg" onerror="this.style.display='none'">
+        <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-center p-4">
+            <img id="hero-logo" src="images/logo_6daysofsalad.png" alt="6 Days of Salad Logo" class="h-24 md:h-32 mb-4 drop-shadow-lg" onerror="this.src='https://placehold.co/200x80/FFFFFF/000000?text=6+Days+of+Salad'">
             <h1 id="hero-title" class="font-display text-4xl md:text-6xl font-bold drop-shadow-lg">Freshness in Every Bowl</h1>
             <p id="hero-subtitle" class="mt-4 text-lg md:text-2xl max-w-2xl drop-shadow-md">Healthy, delicious, and delivered right to your door. Your daily dose of goodness starts here.</p>
             <a id="hero-button" href="#menu" class="mt-8 bg-lime-500 hover:bg-lime-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
@@ -187,9 +190,9 @@
                     <div class="swiper menu-swiper">
                         <div class="swiper-wrapper">
                             <!-- Slides -->
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1547592180-85f1d35a1627?q=80&w=600&h=400&auto=format&fit=crop&ixlib=rb-4.0.3" class="w-full h-48 object-cover" alt="Chicken Caesar Salad"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Chicken Caesar Salad</h3><div class="text-lg font-bold text-lime-600 mt-2">₹229</div></div></div></div>
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1551248429-40974011e723?q=80&w=600&h=400&auto=format&fit=crop&ixlib=rb-4.0.3" class="w-full h-48 object-cover" alt="The Olympian Bowl"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">The Olympian Bowl</h3><div class="text-lg font-bold text-lime-600 mt-2">₹249</div></div></div></div>
-                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1592415522399-6511a7985459?q=80&w=600&h=400&auto=format&fit=crop&ixlib=rb-4.0.3" class="w-full h-48 object-cover" alt="Gut Health Bowl"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Gut Health Bowl</h3><div class="text-lg font-bold text-lime-600 mt-2">₹239</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Chicken Caesar Salad"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Chicken Caesar Salad</h3><div class="text-lg font-bold text-lime-600 mt-2">₹229</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="The Olympian Bowl"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">The Olympian Bowl</h3><div class="text-lg font-bold text-lime-600 mt-2">₹249</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Gut Health Bowl"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Gut Health Bowl</h3><div class="text-lg font-bold text-lime-600 mt-2">₹239</div></div></div></div>
                         </div>
                         <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                     </div>
@@ -224,7 +227,7 @@
                 </div>
                 <!-- Menu Download Button -->
                 <div class="text-center">
-                    <a href="menu_flyer.pdf" download="6-Days-of-Salad-Menu.pdf" class="inline-block bg-lime-600 hover:bg-lime-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+                    <a href="images/menu_flyer.pdf" download="6-Days-of-Salad-Menu.pdf" class="inline-block bg-lime-600 hover:bg-lime-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
                        <i class="fas fa-download mr-2"></i> Download Menu
                     </a>
                 </div>
@@ -433,9 +436,10 @@
                   .from('#hero-button', { opacity: 0, y: 30, duration: 0.6 }, '-=0.4');
 
             // 2. Parallax Veggies Animation
+            // Initial parallax effect within the hero section
             gsap.utils.toArray('.parallax-element').forEach(el => {
                 gsap.to(el, {
-                    y: (i, target) => -ScrollTrigger.maxScroll(window) * target.dataset.speed,
+                    y: (i, target) => -window.innerHeight * target.dataset.speed,
                     ease: 'none',
                     scrollTrigger: {
                         trigger: '.parallax-container',
@@ -445,6 +449,22 @@
                     }
                 });
             });
+
+            // Second animation: veggies float across the screen after hero
+            gsap.utils.toArray('.parallax-element').forEach((el, i) => {
+                gsap.to(el, {
+                    x: () => (i % 2 === 0 ? '-100vw' : '100vw'), // Move left or right off-screen
+                    rotation: () => gsap.utils.random(-360, 360),
+                    ease: 'power1.inOut',
+                    scrollTrigger: {
+                        trigger: 'main', // Start animation when the main content enters view
+                        start: 'top bottom', // When top of main hits bottom of viewport
+                        end: 'bottom top', // When bottom of main hits top of viewport
+                        scrub: 1.5,
+                    }
+                })
+            });
+
 
             // 3. Section Title & Subtitle Reveal
             gsap.utils.toArray('.section-title').forEach(title => {
