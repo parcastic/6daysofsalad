@@ -16,6 +16,9 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Swiper.js for Carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         /* Custom Styles */
         body {
@@ -39,10 +42,10 @@
             backdrop-filter: blur(10px);
             transform: translateY(-100%);
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         #navbar.scrolled {
             transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         /* Parallax container */
@@ -69,6 +72,7 @@
             position: absolute;
             transition: transform 0.2s ease-out;
             will-change: transform;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
         }
         
         /* Veggies floating around */
@@ -76,6 +80,9 @@
         #veg-2 { top: 25%; right: 5%; width: 100px; }
         #veg-3 { top: 60%; left: 5%; width: 120px; }
         #veg-4 { bottom: 10%; right: 15%; width: 90px; }
+        #veg-5 { top: 75%; right: 10%; width: 70px; } 
+        #veg-6 { top: 50%; left: 20%; width: 60px; } 
+        #veg-7 { top: 20%; left: 40%; width: 90px; } 
         #juice-glass { bottom: 5%; left: 50%; transform: translateX(-50%); width: 150px; z-index: 10;}
 
         /* Section transition */
@@ -84,46 +91,47 @@
             transform: translateY(50px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-
         .section-reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Menu card styling */
+        /* Swiper Carousel Styles */
+        .swiper-slide {
+            height: auto;
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0.5rem;
+        }
         .menu-card {
+            width: 100%;
+            max-width: 320px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .menu-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .swiper-button-next, .swiper-button-prev {
+            color: #84CC16;
         }
-        .menu-tag {
-            display: inline-block;
-            background-color: #ECFDF5; /* Emerald-50 */
-            color: #065F46; /* Emerald-800 */
-            padding: 2px 10px;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
+        
+        /* Testimonial Card */
+        .testimonial-card {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
+        .stars { color: #facc15; }
 
         /* Bulk calculator styles */
-        .calculator-dropdown {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1.2em;
-            padding-right: 2.5rem;
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none;
+            width: 25px; height: 25px;
+            background: #84CC16; cursor: pointer;
+            border-radius: 50%; border: 2px solid white;
         }
         
         /* Contact button animations */
-        .contact-btn {
-            transition: all 0.3s ease;
-        }
+        .contact-btn { transition: all 0.3s ease; }
         .contact-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
@@ -141,11 +149,11 @@
     <nav id="navbar">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#">
-                <img src="logo_6daysofsalad.png" alt="6 Days of Salad Logo" class="h-12">
+                <img src="images/logo_6daysofsalad.png" alt="6 Days of Salad Logo" class="h-12" onerror="this.src='https://placehold.co/150x50/FFFFFF/000000?text=6+Days+of+Salad'">
             </a>
-            <div class="hidden md:flex space-x-8">
+            <div class="hidden md:flex space-x-6 lg:space-x-8 text-sm lg:text-base">
                 <a href="#menu" class="text-gray-700 hover:text-lime-600 font-semibold">Menu</a>
-                <a href="#download-menu" class="text-gray-700 hover:text-lime-600 font-semibold">Download Menu</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-lime-600 font-semibold">Reviews</a>
                 <a href="#bulk-order" class="text-gray-700 hover:text-lime-600 font-semibold">Bulk Orders</a>
                 <a href="#contact" class="text-gray-700 hover:text-lime-600 font-semibold">Contact</a>
             </div>
@@ -155,18 +163,21 @@
         </div>
     </nav>
     
-    <!-- Hero Section with Parallax -->
+    <!-- Hero Section -->
     <header class="parallax-container text-white">
         <div class="parallax-bg"></div>
         <!-- Floating Veggies -->
-        <img src="https://img.icons8.com/plasticine/100/lettuce.png" onerror="this.src='https://placehold.co/100x100/0000/FFFFFF?text=V'" id="veg-1" class="parallax-element" alt="Floating lettuce">
-        <img src="https://img.icons8.com/plasticine/100/tomato.png" onerror="this.src='https://placehold.co/120x120/0000/FFFFFF?text=V'" id="veg-2" class="parallax-element" alt="Floating tomato">
-        <img src="https://img.icons8.com/plasticine/100/cucumber.png" onerror="this.src='https://placehold.co/150x150/0000/FFFFFF?text=V'" id="veg-3" class="parallax-element" alt="Floating cucumber">
-        <img src="https://img.icons8.com/plasticine/100/carrot.png" onerror="this.src='https://placehold.co/110x110/0000/FFFFFF?text=V'" id="veg-4" class="parallax-element" alt="Floating carrot">
-        <img src="https://img.icons8.com/plasticine/200/orange-juice.png" onerror="this.src='https://placehold.co/200x200/0000/FFFFFF?text=J'" id="juice-glass" class="parallax-element" alt="Glass of juice">
+        <img src="https://img.icons8.com/plasticine/100/lettuce.png" onerror="this.style.display='none'" id="veg-1" class="parallax-element" alt="Floating lettuce">
+        <img src="https://img.icons8.com/plasticine/100/tomato.png" onerror="this.style.display='none'" id="veg-2" class="parallax-element" alt="Floating tomato">
+        <img src="https://img.icons8.com/plasticine/100/cucumber.png" onerror="this.style.display='none'" id="veg-3" class="parallax-element" alt="Floating cucumber">
+        <img src="https://img.icons8.com/plasticine/100/carrot.png" onerror="this.style.display='none'" id="veg-4" class="parallax-element" alt="Floating carrot">
+        <img src="https://img.icons8.com/plasticine/100/olive.png" onerror="this.style.display='none'" id="veg-5" class="parallax-element" alt="Floating olive">
+        <img src="https://img.icons8.com/plasticine/100/feta-cheese.png" onerror="this.style.display='none'" id="veg-6" class="parallax-element" alt="Floating feta cheese">
+        <img src="https://img.icons8.com/plasticine/100/avocado.png" onerror="this.style.display='none'" id="veg-7" class="parallax-element" alt="Floating avocado">
+        <img src="https://img.icons8.com/plasticine/200/orange-juice.png" onerror="this.style.display='none'" id="juice-glass" class="parallax-element" alt="Glass of juice">
         
-        <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-center p-4">
-            <img src="logo_6daysofsalad.png" alt="6 Days of Salad Logo" class="h-24 md:h-32 mb-4 drop-shadow-lg">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center p-4">
+            <img src="images/logo_6daysofsalad.png" alt="6 Days of Salad Logo" class="h-24 md:h-32 mb-4 drop-shadow-lg" onerror="this.style.display='none'">
             <h1 class="font-display text-4xl md:text-6xl font-bold drop-shadow-lg">Freshness in Every Bowl</h1>
             <p class="mt-4 text-lg md:text-2xl max-w-2xl drop-shadow-md">Healthy, delicious, and delivered right to your door. Your daily dose of goodness starts here.</p>
             <a href="#menu" class="mt-8 bg-lime-500 hover:bg-lime-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
@@ -176,202 +187,145 @@
     </header>
 
     <main>
-        <!-- Menu Section from Flyer -->
+        <!-- Menu Carousel Section -->
         <section id="menu" class="py-16 md:py-24 section-reveal">
-            <div class="container mx-auto px-6">
-                <!-- Category: Fresh & Crisp Bowls -->
+            <div class="container mx-auto px-0 md:px-6">
+                <!-- Salad Bowls Carousel -->
                 <div class="mb-16">
-                    <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-12">Fresh & Crisp Bowls</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Chicken Caesar Salad">
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold font-display text-gray-800">Chicken Caesar Salad</h3>
-                                <p class="text-gray-600 mt-2 text-sm">Grilled chicken breast, crisp lettuce, crunchy croutons & boiled egg in a creamy Caesar dressing.</p>
-                                <div class="mt-4 flex flex-wrap gap-2"><span class="menu-tag">Low-Carb</span><span class="menu-tag">Metabolism Boost</span></div>
-                                <div class="text-xl font-bold text-lime-600 mt-4">₹229</div>
-                            </div>
+                    <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-8">Fresh & Crisp Bowls</h2>
+                    <div class="swiper menu-swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Chicken Caesar Salad"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Chicken Caesar Salad</h3><div class="text-lg font-bold text-lime-600 mt-2">₹229</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1594041682383-60600155b2ce?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="The Olympian Bowl"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">The Olympian Bowl</h3><div class="text-lg font-bold text-lime-600 mt-2">₹249</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Gut Health Bowl"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Gut Health Bowl</h3><div class="text-lg font-bold text-lime-600 mt-2">₹239</div></div></div></div>
                         </div>
-                        <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1594041682383-60600155b2ce?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="The Olympian Bowl">
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold font-display text-gray-800">The Olympian Bowl</h3>
-                                <p class="text-gray-600 mt-2 text-sm">Your choice of protein-packed chicken or paneer on a bed of quinoa, chickpeas & fresh veggies.</p>
-                                <div class="mt-4 flex flex-wrap gap-2"><span class="menu-tag">High-Protein</span><span class="menu-tag">Muscle Gain</span></div>
-                                <div class="text-xl font-bold text-lime-600 mt-4">₹249</div>
-                            </div>
-                        </div>
-                        <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                             <img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?q=80&w=1978&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Gut Health Bowl">
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold font-display text-gray-800">Gut Health Bowl</h3>
-                                <p class="text-gray-600 mt-2 text-sm">A high-fibre medley of quinoa, chickpeas sprouts & vibrant veggies like beetroot and carrot.</p>
-                                <div class="mt-4 flex flex-wrap gap-2"><span class="menu-tag">High-Fibre</span><span class="menu-tag">Digestive Aid</span></div>
-                                <div class="text-xl font-bold text-lime-600 mt-4">₹239</div>
-                            </div>
-                        </div>
+                        <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                     </div>
                 </div>
 
-                <!-- Category: Wholesome Sandwiches -->
+                <!-- Sandwiches Carousel -->
                 <div class="mb-16">
-                    <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-12">Wholesome Sandwiches</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                             <img src="https://images.unsplash.com/photo-1592487498059-0e9c3752e633?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Tandoori Paneer Sandwich">
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold font-display text-gray-800">Tandoori Paneer Sandwich</h3>
-                                <p class="text-gray-600 mt-2 text-sm">Smoky tandoori paneer tikka cubes & sliced onions grilled in multigrain bread with a cooling mint dressing.</p>
-                                <div class="mt-4 flex flex-wrap gap-2"><span class="menu-tag">Fusion Flavour</span><span class="menu-tag">Protein-Rich</span></div>
-                                <div class="text-xl font-bold text-lime-600 mt-4">₹199</div>
-                            </div>
+                    <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-8">Wholesome Sandwiches</h2>
+                    <div class="swiper menu-swiper">
+                        <div class="swiper-wrapper">
+                             <!-- Slides -->
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1592487498059-0e9c3752e633?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Tandoori Paneer Sandwich"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Tandoori Paneer Sandwich</h3><div class="text-lg font-bold text-lime-600 mt-2">₹199</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c766?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Grilled Chicken Pesto Sandwich"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Grilled Chicken Pesto</h3><div class="text-lg font-bold text-lime-600 mt-2">₹229</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1549572099-e3056a83694b?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Creamy Corn & Spinach Sandwich"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Creamy Corn & Spinach</h3><div class="text-lg font-bold text-lime-600 mt-2">₹189</div></div></div></div>
                         </div>
-                        <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1553909489-cd47e0907910?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Grilled Chicken Pesto Sandwich">
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold font-display text-gray-800">Grilled Chicken Pesto</h3>
-                                <p class="text-gray-600 mt-2 text-sm">Tender grilled chicken with a bright, nutty pesto sauce and fresh tomatoes in artisan bread.</p>
-                                <div class="mt-4 flex flex-wrap gap-2"><span class="menu-tag">Gourmet</span><span class="menu-tag">Herbaceous</span></div>
-                                <div class="text-xl font-bold text-lime-600 mt-4">₹229</div>
-                            </div>
-                        </div>
-                        <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                             <img src="https://images.unsplash.com/photo-1628139349434-a27dd8c9b139?q=80&w=1935&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Creamy Corn & Spinach Sandwich">
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold font-display text-gray-800">Creamy Corn & Spinach</h3>
-                                <p class="text-gray-600 mt-2 text-sm">A comforting classic with a creamy filling of sweet corn & fresh spinach. A perfect light bite.</p>
-                                <div class="mt-4 flex flex-wrap gap-2"><span class="menu-tag">Comfort Food</span><span class="menu-tag">Kid-Friendly</span></div>
-                                <div class="text-xl font-bold text-lime-600 mt-4">₹189</div>
-                            </div>
-                        </div>
+                        <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                     </div>
                 </div>
 
-                 <!-- Category: Beverages & Smoothies -->
+                <!-- Beverages Carousel -->
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-12">Beverages & Smoothies</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                       <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1610970881699-44a5c8a0f49a?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="The Hulk Smoothie">
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold font-display text-gray-800">The Hulk Smoothie</h3>
-                                <p class="text-gray-600 mt-2 text-sm">A thick and satisfying smoothie with banana, peanut butter, oats, and milk.</p>
-                                <div class="mt-4 flex flex-wrap gap-2"><span class="menu-tag">Meal Replacement</span><span class="menu-tag">High-Protein</span></div>
-                                <div class="text-xl font-bold text-lime-600 mt-4">₹169</div>
-                            </div>
+                    <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-8">Beverages & Smoothies</h2>
+                    <div class="swiper menu-swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1630176378958-302a28e57827?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="The Hulk Smoothie"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">The Hulk Smoothie</h3><div class="text-lg font-bold text-lime-600 mt-2">₹169</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1577805947697-89e1824a876f?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Berry Blast Smoothie"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Berry Blast Smoothie</h3><div class="text-lg font-bold text-lime-600 mt-2">₹159</div></div></div></div>
+                            <div class="swiper-slide"><div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden"><img src="https://images.unsplash.com/photo-1517701550927-4e4a36736b84?q=80&w=600&h=400&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Classic Cold Coffee"><div class="p-6"><h3 class="text-xl font-bold font-display text-gray-800">Classic Cold Coffee</h3><div class="text-lg font-bold text-lime-600 mt-2">₹129</div></div></div></div>
                         </div>
-                        <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                             <img src="https://images.unsplash.com/photo-1619541320348-f6e0b3c18c94?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Berry Blast Smoothie">
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold font-display text-gray-800">Berry Blast Smoothie</h3>
-                                <p class="text-gray-600 mt-2 text-sm">A delicious blend of mixed berries, banana, and creamy yogurt, packed with antioxidants.</p>
-                                <div class="mt-4 flex flex-wrap gap-2"><span class="menu-tag">Antioxidant</span><span class="menu-tag">Skin Glow</span></div>
-                                <div class="text-xl font-bold text-lime-600 mt-4">₹159</div>
-                            </div>
-                        </div>
-                        <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1579782433241-1534f3695273?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Classic Cold Coffee">
-                            <div class="p-6">
-                                <h3 class="text-2xl font-bold font-display text-gray-800">Classic Cold Coffee</h3>
-                                <p class="text-gray-600 mt-2 text-sm">A classic, creamy cold coffee made with freshly brewed coffee and milk.</p>
-                                <div class="mt-4 flex flex-wrap gap-2"><span class="menu-tag">Energy Boost</span><span class="menu-tag">Focus Fuel</span></div>
-                                <div class="text-xl font-bold text-lime-600 mt-4">₹129</div>
-                            </div>
-                        </div>
+                        <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Download Menu Section -->
-        <section id="download-menu" class="py-16 md:py-24 bg-lime-50 section-reveal">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-display text-gray-800 mb-4">View Our Full Menu</h2>
-                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">Download our complete menu to see all our offerings, including special combos and seasonal items.</p>
-                <a href="images/menu_flyer.pdf" target="_blank" class="bg-lime-600 hover:bg-lime-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 inline-flex items-center">
-                    <i class="fas fa-download mr-3"></i> Download PDF
-                </a>
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-16 md:py-24 bg-lime-50 section-reveal">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-12">What Our Customers Say</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="testimonial-card"><div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-gray-600">"Paneer salad bowl mein ingredients fresh lage. Portion bhi fulfilling tha. Taste mild tha but balanced. Daily lunch ke liye kaafi acha option hai."</p></div>
+                    <div class="testimonial-card"><div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><p class="text-gray-600">"Chicken salad bowl liya tha. Veggies crisp thi, grilled chicken bhi well cooked tha. Ek point kam kar raha hoon kyunki thoda dressing kam laga."</p></div>
+                    <div class="testimonial-card"><div class="stars mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div><p class="text-gray-600">"Sandwich ka bread soft tha aur filling bhi theek thi, lekin thoda aur flavour hota toh better lagta. Still better than most places."</p></div>
+                </div>
             </div>
         </section>
-
 
         <!-- Bulk Order Calculator Section -->
         <section id="bulk-order" class="py-16 md:py-24 bg-white section-reveal">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-4">Corporate & Bulk Orders</h2>
-                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Build your team's order. Add items from our menu to get an instant price estimate.</p>
-                <div class="max-w-4xl mx-auto bg-gray-50 p-8 rounded-2xl shadow-inner">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Fuel your team with healthy meals. Calculate an estimated price for your bulk order instantly.</p>
+                <div class="max-w-3xl mx-auto bg-gray-50 p-8 rounded-2xl shadow-inner">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         <!-- Left Side: Inputs -->
-                        <div class="space-y-6">
-                            <!-- Salad Bowls Dropdown -->
-                            <div>
-                                <label for="salad-dropdown" class="block font-semibold mb-2 text-gray-700">Salad Bowls</label>
-                                <div class="flex">
-                                    <select id="salad-dropdown" class="calculator-dropdown w-full bg-white border border-gray-300 rounded-l-md p-3 focus:ring-lime-500 focus:border-lime-500">
-                                        <option value="Chicken Caesar Salad-229">Chicken Caesar Salad - ₹229</option>
-                                        <option value="The Olympian Bowl-249">The Olympian Bowl - ₹249</option>
-                                        <option value="Gut Health Bowl-239">Gut Health Bowl - ₹239</option>
-                                    </select>
-                                    <button onclick="addItem('salad-dropdown')" class="bg-lime-500 hover:bg-lime-600 text-white font-bold p-3 rounded-r-md"><i class="fas fa-plus"></i></button>
-                                </div>
+                        <div>
+                             <div class="mb-6">
+                                <label for="employees" class="block font-semibold mb-2 text-gray-700">Number of Meals / Employees</label>
+                                <input type="range" id="employees" min="1" max="300" value="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                                <div class="text-center mt-2 font-bold text-2xl text-lime-600"><span id="employee-count">10</span> Meals</div>
                             </div>
-                            <!-- Sandwiches Dropdown -->
-                            <div>
-                                <label for="sandwich-dropdown" class="block font-semibold mb-2 text-gray-700">Sandwiches</label>
-                                <div class="flex">
-                                    <select id="sandwich-dropdown" class="calculator-dropdown w-full bg-white border border-gray-300 rounded-l-md p-3 focus:ring-lime-500 focus:border-lime-500">
-                                        <option value="Tandoori Paneer Sandwich-199">Tandoori Paneer Sandwich - ₹199</option>
-                                        <option value="Grilled Chicken Pesto-229">Grilled Chicken Pesto - ₹229</option>
-                                        <option value="Creamy Corn & Spinach-189">Creamy Corn & Spinach - ₹189</option>
-                                    </select>
-                                    <button onclick="addItem('sandwich-dropdown')" class="bg-lime-500 hover:bg-lime-600 text-white font-bold p-3 rounded-r-md"><i class="fas fa-plus"></i></button>
-                                </div>
-                            </div>
-                            <!-- Beverages Dropdown -->
-                            <div>
-                                <label for="beverage-dropdown" class="block font-semibold mb-2 text-gray-700">Beverages</label>
-                                <div class="flex">
-                                    <select id="beverage-dropdown" class="calculator-dropdown w-full bg-white border border-gray-300 rounded-l-md p-3 focus:ring-lime-500 focus:border-lime-500">
-                                        <option value="The Hulk Smoothie-169">The Hulk Smoothie - ₹169</option>
-                                        <option value="Berry Blast Smoothie-159">Berry Blast Smoothie - ₹159</option>
-                                        <option value="Classic Cold Coffee-129">Classic Cold Coffee - ₹129</option>
-                                    </select>
-                                    <button onclick="addItem('beverage-dropdown')" class="bg-lime-500 hover:bg-lime-600 text-white font-bold p-3 rounded-r-md"><i class="fas fa-plus"></i></button>
-                                </div>
+                            <div class="mb-6">
+                                <label for="menu-item-select" class="block font-semibold mb-2 text-gray-700">Select a Meal</label>
+                                <select id="menu-item-select" class="w-full bg-white border border-gray-300 rounded-md p-3 focus:ring-lime-500 focus:border-lime-500">
+                                    <option value="229">Chicken Caesar Salad - ₹229</option>
+                                    <option value="249">The Olympian Bowl - ₹249</option>
+                                    <option value="199">Tandoori Paneer Sandwich - ₹199</option>
+                                    <option value="169">The Hulk Smoothie - ₹169</option>
+                                </select>
                             </div>
                         </div>
-
-                        <!-- Right Side: Order Summary -->
-                        <div class="bg-white rounded-xl shadow-md p-6 h-full">
-                            <h3 class="font-bold text-xl mb-4 text-gray-800">Your Order Summary</h3>
-                            <div id="order-items-container" class="space-y-3 mb-4 max-h-60 overflow-y-auto pr-2">
-                                <!-- Items will be added here dynamically -->
-                                <p class="text-gray-500 text-center" id="empty-order-message">Add items to see them here.</p>
-                            </div>
-                            <div class="border-t pt-4">
-                               <p class="text-sm text-gray-600 mb-2">A 10% discount is applied for orders over ₹5,000.</p>
-                                <div id="discount-display" class="text-green-600 font-semibold hidden">- ₹0</div>
-                                <div class="flex justify-between items-center mt-2">
-                                    <p class="font-semibold text-lg">Total:</p>
-                                    <div class="font-black text-2xl lg:text-3xl text-lime-600" id="total-price">₹0</div>
-                                </div>
-                            </div>
+                        <!-- Right Side: Price Display -->
+                        <div class="bg-lime-500 text-white rounded-xl flex flex-col items-center justify-center p-6 text-center h-full">
+                            <p class="font-semibold text-lime-100">Discount Applied: <span id="discount-percent">10%</span></p>
+                            <p class="font-semibold mt-4">Estimated Total Price</p>
+                            <div class="font-black text-4xl lg:text-5xl my-1" id="total-price-display">₹2,061</div>
+                            <p class="text-sm opacity-80" id="effective-price-display">Effective Price: ₹206.10/meal</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Google Reviews Section -->
+        <section class="py-16 md:py-24 bg-gray-50 section-reveal">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-2">Loved by Foodies</h2>
+                <div class="text-center mb-12">
+                    <span class="font-bold text-xl text-gray-700">Google</span>
+                    <span class="text-yellow-500"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                    <span class="text-gray-600">4.8 (250+ reviews)</span>
+                </div>
+                <!-- This is a visual representation. Not a live embed. -->
+                <div class="relative rounded-lg overflow-hidden h-64 md:h-80">
+                     <img src="https://placehold.co/1200x400/e0e0e0/a0a0a0?text=Map+of+Gurugram+(Placeholder)" class="w-full h-full object-cover" alt="Map of Gurugram">
+                     <div class="absolute inset-0 bg-black/20"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instagram Section -->
+        <section id="instagram" class="py-16 md:py-24 section-reveal">
+             <div class="container mx-auto px-6 text-center">
+                 <a href="https://www.instagram.com/6daysofsalad/" target="_blank" class="text-gray-800 hover:text-lime-600 transition">
+                    <i class="fab fa-instagram text-4xl"></i>
+                    <h2 class="text-3xl md:text-4xl font-display mt-2">Follow @6daysofsalad</h2>
+                 </a>
+                 <p class="text-center text-gray-600 max-w-2xl mx-auto my-4">Get your daily dose of freshness on your feed. Follow us for offers, new launches, and more!</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mt-8">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=400&h=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg aspect-square">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=400&h=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg aspect-square">
+                    <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=400&h=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg aspect-square">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17021?q=80&w=400&h=400&auto=format&fit=crop" class="w-full h-full object-cover rounded-lg aspect-square">
+                </div>
+             </div>
+        </section>
+
+
         <!-- Contact Section -->
-        <section id="contact" class="py-16 md:py-24 section-reveal">
+        <section id="contact" class="py-16 md:py-24 bg-lime-50 section-reveal">
              <div class="container mx-auto px-6 text-center">
                  <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-4">Ready to Order?</h2>
-                 <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Contact us to place an order or get more information. We're here to help!</p>
+                 <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Contact us to place an order or for corporate enquiries. We're here to help!</p>
                  <div class="flex flex-col md:flex-row justify-center items-center gap-8">
                     <!-- QR Code -->
                     <div class="text-center">
-                        <img src="qrcode_6daysofsalad.png" alt="QR Code for WhatsApp" class="h-40 w-40 mx-auto rounded-lg shadow-md">
+                        <img src="images/qrcode_6daysofsalad.png" alt="QR Code for WhatsApp" class="h-40 w-40 mx-auto rounded-lg shadow-md" onerror="this.src='https://placehold.co/160x160/000000/FFFFFF?text=QR+Code'">
                         <p class="mt-2 font-semibold text-gray-700">Scan for WhatsApp</p>
                     </div>
                     <!-- Buttons -->
@@ -390,11 +344,15 @@
     
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-6 text-center">
+            <div class="mb-4">
+                 <a href="https://www.instagram.com/6daysofsalad/" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
+            </div>
             <p>&copy; 2025 6 Days of Salad. All Rights Reserved.</p>
             <p class="text-sm text-gray-400 mt-2">Designed with <i class="fas fa-heart text-red-500"></i> for healthy eaters in Gurugram.</p>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         // --- Navbar Scroll Effect ---
         const navbar = document.getElementById('navbar');
@@ -413,14 +371,13 @@
             
             parallaxElements.forEach(el => {
                 let speed = 0.5;
-                if (el.id === 'veg-1') speed = 0.7;
-                if (el.id === 'veg-2') speed = 0.4;
-                if (el.id === 'veg-3') speed = 0.6;
-                if (el.id === 'veg-4') speed = 0.3;
-                if (el.id === 'juice-glass') speed = 0.8;
+                if (el.id === 'veg-1') speed = 0.7; if (el.id === 'veg-2') speed = 0.4;
+                if (el.id === 'veg-3') speed = 0.6; if (el.id === 'veg-4') speed = 0.3;
+                if (el.id === 'veg-5') speed = 0.55; if (el.id === 'veg-6') speed = 0.8;
+                if (el.id === 'veg-7') speed = 0.25; if (el.id === 'juice-glass') speed = 0.9;
                 
                 const moveY = -(scrollY * speed);
-                const moveX = (el.id.includes('veg-2') || el.id.includes('veg-4')) ? (scrollY * speed * 0.1) : -(scrollY * speed * 0.1);
+                const moveX = (el.id.includes('veg-2') || el.id.includes('veg-4') || el.id.includes('veg-5')) ? (scrollY * speed * 0.1) : -(scrollY * speed * 0.1);
                 
                 el.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
             });
@@ -434,90 +391,55 @@
                 }
             });
         }, { threshold: 0.1 });
+        document.querySelectorAll('.section-reveal').forEach(section => revealObserver.observe(section));
 
-        document.querySelectorAll('.section-reveal').forEach(section => {
-            revealObserver.observe(section);
+        // --- Menu Carousel Initialization ---
+        const swiper = new Swiper('.menu-swiper', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: { slidesPerView: 2, spaceBetween: 20 },
+                1024: { slidesPerView: 3, spaceBetween: 30 },
+            }
         });
 
         // --- Bulk Order Calculator Logic ---
-        const orderItemsContainer = document.getElementById('order-items-container');
-        const totalPriceSpan = document.getElementById('total-price');
-        const emptyOrderMessage = document.getElementById('empty-order-message');
-        const discountDisplay = document.getElementById('discount-display');
-        
-        let order = {};
+        const employeeSlider = document.getElementById('employees');
+        const employeeCountSpan = document.getElementById('employee-count');
+        const itemSelect = document.getElementById('menu-item-select');
+        const totalPriceDisplay = document.getElementById('total-price-display');
+        const effectivePriceDisplay = document.getElementById('effective-price-display');
+        const discountPercentDisplay = document.getElementById('discount-percent');
 
-        function addItem(dropdownId) {
-            const dropdown = document.getElementById(dropdownId);
-            const selectedValue = dropdown.value;
-            const [name, price] = selectedValue.split('-');
-
-            if (order[name]) {
-                order[name].quantity++;
-            } else {
-                order[name] = {
-                    price: parseInt(price),
-                    quantity: 1
-                };
-            }
-            updateOrderSummary();
-        }
-
-        function changeQuantity(name, change) {
-            if (order[name]) {
-                order[name].quantity += change;
-                if (order[name].quantity <= 0) {
-                    delete order[name];
-                }
-                updateOrderSummary();
-            }
-        }
-        
-        function updateOrderSummary() {
-            orderItemsContainer.innerHTML = '';
-            let subtotal = 0;
-
-            const itemNames = Object.keys(order);
-
-            if (itemNames.length === 0) {
-                orderItemsContainer.appendChild(emptyOrderMessage);
-                emptyOrderMessage.style.display = 'block';
-            } else {
-                 emptyOrderMessage.style.display = 'none';
-                 itemNames.forEach(name => {
-                    const item = order[name];
-                    subtotal += item.price * item.quantity;
-
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'flex justify-between items-center text-sm';
-                    itemElement.innerHTML = `
-                        <span class="flex-grow pr-2">${name}</span>
-                        <div class="flex items-center">
-                            <button onclick="changeQuantity('${name}', -1)" class="font-bold w-6 h-6 bg-gray-200 rounded-full">-</button>
-                            <span class="w-8 text-center font-semibold">${item.quantity}</span>
-                            <button onclick="changeQuantity('${name}', 1)" class="font-bold w-6 h-6 bg-gray-200 rounded-full">+</button>
-                        </div>
-                    `;
-                    orderItemsContainer.appendChild(itemElement);
-                });
-            }
-
+        function calculateBulkPrice() {
+            const mealCount = parseInt(employeeSlider.value);
+            const itemPrice = parseInt(itemSelect.value);
+            
             let discount = 0;
-            if (subtotal > 5000) {
-                discount = subtotal * 0.10;
-                discountDisplay.textContent = `- ₹${discount.toFixed(2)}`;
-                discountDisplay.classList.remove('hidden');
-            } else {
-                discountDisplay.classList.add('hidden');
-            }
+            if (mealCount > 200) discount = 0.50;
+            else if (mealCount > 100) discount = 0.40;
+            else if (mealCount > 50) discount = 0.30;
+            else if (mealCount > 20) discount = 0.20;
+            else if (mealCount > 5) discount = 0.10;
 
-            const total = subtotal - discount;
-            totalPriceSpan.textContent = `₹${total.toFixed(2)}`;
+            const total = (mealCount * itemPrice) * (1 - discount);
+            const effectivePrice = total / mealCount;
+
+            // Update UI
+            employeeCountSpan.textContent = mealCount;
+            totalPriceDisplay.textContent = `₹${Math.round(total).toLocaleString('en-IN')}`;
+            effectivePriceDisplay.textContent = `Effective Price: ₹${effectivePrice.toFixed(2)}/meal`;
+            discountPercentDisplay.textContent = `${Math.round(discount * 100)}%`;
         }
         
-        document.addEventListener('DOMContentLoaded', updateOrderSummary);
-
+        employeeSlider.addEventListener('input', calculateBulkPrice);
+        itemSelect.addEventListener('change', calculateBulkPrice);
+        document.addEventListener('DOMContentLoaded', calculateBulkPrice);
     </script>
-
 </body>
 </html>
