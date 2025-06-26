@@ -109,16 +109,15 @@
         }
 
         /* Bulk calculator styles */
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none; appearance: none;
-            width: 25px; height: 25px;
-            background: #84CC16; cursor: pointer;
-            border-radius: 50%; border: 2px solid white;
-        }
-        input[type="range"]::-moz-range-thumb {
-            width: 25px; height: 25px;
-            background: #84CC16; cursor: pointer;
-            border-radius: 50%; border: 2px solid white;
+        .calculator-dropdown {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2em;
+            padding-right: 2.5rem;
         }
         
         /* Contact button animations */
@@ -146,6 +145,7 @@
             </a>
             <div class="hidden md:flex space-x-8">
                 <a href="#menu" class="text-gray-700 hover:text-lime-600 font-semibold">Menu</a>
+                <a href="#download-menu" class="text-gray-700 hover:text-lime-600 font-semibold">Download Menu</a>
                 <a href="#bulk-order" class="text-gray-700 hover:text-lime-600 font-semibold">Bulk Orders</a>
                 <a href="#contact" class="text-gray-700 hover:text-lime-600 font-semibold">Contact</a>
             </div>
@@ -202,7 +202,7 @@
                             </div>
                         </div>
                         <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                             <img src="https://images.unsplash.com/photo-1574484284005-a4b9e8a9f21a?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Gut Health Bowl">
+                             <img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?q=80&w=1978&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Gut Health Bowl">
                             <div class="p-6">
                                 <h3 class="text-2xl font-bold font-display text-gray-800">Gut Health Bowl</h3>
                                 <p class="text-gray-600 mt-2 text-sm">A high-fibre medley of quinoa, chickpeas sprouts & vibrant veggies like beetroot and carrot.</p>
@@ -218,7 +218,7 @@
                     <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-12">Wholesome Sandwiches</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                             <img src="https://images.unsplash.com/photo-1625398407436-1009dd77348e?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Tandoori Paneer Sandwich">
+                             <img src="https://images.unsplash.com/photo-1592487498059-0e9c3752e633?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Tandoori Paneer Sandwich">
                             <div class="p-6">
                                 <h3 class="text-2xl font-bold font-display text-gray-800">Tandoori Paneer Sandwich</h3>
                                 <p class="text-gray-600 mt-2 text-sm">Smoky tandoori paneer tikka cubes & sliced onions grilled in multigrain bread with a cooling mint dressing.</p>
@@ -227,7 +227,7 @@
                             </div>
                         </div>
                         <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1606756790139-2a91a4a15a89?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Grilled Chicken Pesto Sandwich">
+                            <img src="https://images.unsplash.com/photo-1553909489-cd47e0907910?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Grilled Chicken Pesto Sandwich">
                             <div class="p-6">
                                 <h3 class="text-2xl font-bold font-display text-gray-800">Grilled Chicken Pesto</h3>
                                 <p class="text-gray-600 mt-2 text-sm">Tender grilled chicken with a bright, nutty pesto sauce and fresh tomatoes in artisan bread.</p>
@@ -236,7 +236,7 @@
                             </div>
                         </div>
                         <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                             <img src="https://images.unsplash.com/photo-1619589252342-3a87d4a4f80c?q=80&w=1935&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Creamy Corn & Spinach Sandwich">
+                             <img src="https://images.unsplash.com/photo-1628139349434-a27dd8c9b139?q=80&w=1935&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Creamy Corn & Spinach Sandwich">
                             <div class="p-6">
                                 <h3 class="text-2xl font-bold font-display text-gray-800">Creamy Corn & Spinach</h3>
                                 <p class="text-gray-600 mt-2 text-sm">A comforting classic with a creamy filling of sweet corn & fresh spinach. A perfect light bite.</p>
@@ -261,7 +261,7 @@
                             </div>
                         </div>
                         <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                             <img src="https://images.unsplash.com/photo-1553530663-911006a8b488?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Berry Blast Smoothie">
+                             <img src="https://images.unsplash.com/photo-1619541320348-f6e0b3c18c94?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Berry Blast Smoothie">
                             <div class="p-6">
                                 <h3 class="text-2xl font-bold font-display text-gray-800">Berry Blast Smoothie</h3>
                                 <p class="text-gray-600 mt-2 text-sm">A delicious blend of mixed berries, banana, and creamy yogurt, packed with antioxidants.</p>
@@ -270,7 +270,7 @@
                             </div>
                         </div>
                         <div class="menu-card bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1594960304739-534a23a10534?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Classic Cold Coffee">
+                            <img src="https://images.unsplash.com/photo-1579782433241-1534f3695273?q=80&w=1974&auto=format&fit=crop" class="w-full h-48 object-cover" alt="Classic Cold Coffee">
                             <div class="p-6">
                                 <h3 class="text-2xl font-bold font-display text-gray-800">Classic Cold Coffee</h3>
                                 <p class="text-gray-600 mt-2 text-sm">A classic, creamy cold coffee made with freshly brewed coffee and milk.</p>
@@ -283,28 +283,80 @@
             </div>
         </section>
 
+        <!-- Download Menu Section -->
+        <section id="download-menu" class="py-16 md:py-24 bg-lime-50 section-reveal">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-display text-gray-800 mb-4">View Our Full Menu</h2>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">Download our complete menu to see all our offerings, including special combos and seasonal items.</p>
+                <a href="images/menu_flyer.pdf" target="_blank" class="bg-lime-600 hover:bg-lime-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 inline-flex items-center">
+                    <i class="fas fa-download mr-3"></i> Download PDF
+                </a>
+            </div>
+        </section>
+
+
         <!-- Bulk Order Calculator Section -->
         <section id="bulk-order" class="py-16 md:py-24 bg-white section-reveal">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-display text-center text-gray-800 mb-4">Corporate & Bulk Orders</h2>
-                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Fuel your team with healthy meals. Calculate an estimated price for your bulk order instantly.</p>
-                <div class="max-w-3xl mx-auto bg-gray-50 p-8 rounded-2xl shadow-inner">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <div class="mb-6">
-                                <label for="employees" class="block font-semibold mb-2 text-gray-700">Number of Employees</label>
-                                <input type="range" id="employees" min="5" max="200" value="25" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                                <div class="text-center mt-2 font-bold text-2xl text-lime-600"><span id="employee-count">25</span> Employees</div>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Build your team's order. Add items from our menu to get an instant price estimate.</p>
+                <div class="max-w-4xl mx-auto bg-gray-50 p-8 rounded-2xl shadow-inner">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                        <!-- Left Side: Inputs -->
+                        <div class="space-y-6">
+                            <!-- Salad Bowls Dropdown -->
+                            <div>
+                                <label for="salad-dropdown" class="block font-semibold mb-2 text-gray-700">Salad Bowls</label>
+                                <div class="flex">
+                                    <select id="salad-dropdown" class="calculator-dropdown w-full bg-white border border-gray-300 rounded-l-md p-3 focus:ring-lime-500 focus:border-lime-500">
+                                        <option value="Chicken Caesar Salad-229">Chicken Caesar Salad - ₹229</option>
+                                        <option value="The Olympian Bowl-249">The Olympian Bowl - ₹249</option>
+                                        <option value="Gut Health Bowl-239">Gut Health Bowl - ₹239</option>
+                                    </select>
+                                    <button onclick="addItem('salad-dropdown')" class="bg-lime-500 hover:bg-lime-600 text-white font-bold p-3 rounded-r-md"><i class="fas fa-plus"></i></button>
+                                </div>
                             </div>
-                             <div class="mb-6">
-                                <label class="block font-semibold mb-2 text-gray-700">Average Meal Price</label>
-                                <p class="text-gray-600 text-sm">We'll use an average price of ₹220 per meal for this estimate.</p>
+                            <!-- Sandwiches Dropdown -->
+                            <div>
+                                <label for="sandwich-dropdown" class="block font-semibold mb-2 text-gray-700">Sandwiches</label>
+                                <div class="flex">
+                                    <select id="sandwich-dropdown" class="calculator-dropdown w-full bg-white border border-gray-300 rounded-l-md p-3 focus:ring-lime-500 focus:border-lime-500">
+                                        <option value="Tandoori Paneer Sandwich-199">Tandoori Paneer Sandwich - ₹199</option>
+                                        <option value="Grilled Chicken Pesto-229">Grilled Chicken Pesto - ₹229</option>
+                                        <option value="Creamy Corn & Spinach-189">Creamy Corn & Spinach - ₹189</option>
+                                    </select>
+                                    <button onclick="addItem('sandwich-dropdown')" class="bg-lime-500 hover:bg-lime-600 text-white font-bold p-3 rounded-r-md"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <!-- Beverages Dropdown -->
+                            <div>
+                                <label for="beverage-dropdown" class="block font-semibold mb-2 text-gray-700">Beverages</label>
+                                <div class="flex">
+                                    <select id="beverage-dropdown" class="calculator-dropdown w-full bg-white border border-gray-300 rounded-l-md p-3 focus:ring-lime-500 focus:border-lime-500">
+                                        <option value="The Hulk Smoothie-169">The Hulk Smoothie - ₹169</option>
+                                        <option value="Berry Blast Smoothie-159">Berry Blast Smoothie - ₹159</option>
+                                        <option value="Classic Cold Coffee-129">Classic Cold Coffee - ₹129</option>
+                                    </select>
+                                    <button onclick="addItem('beverage-dropdown')" class="bg-lime-500 hover:bg-lime-600 text-white font-bold p-3 rounded-r-md"><i class="fas fa-plus"></i></button>
+                                </div>
                             </div>
                         </div>
-                        <div class="bg-lime-500 text-white rounded-xl flex flex-col items-center justify-center p-6 text-center h-full">
-                            <p class="font-semibold">Estimated Price Per Day</p>
-                            <div class="font-black text-4xl lg:text-5xl my-2" id="total-price">₹4,950</div>
-                            <p class="text-sm opacity-80">A 10% discount is applied for orders over 50 employees.</p>
+
+                        <!-- Right Side: Order Summary -->
+                        <div class="bg-white rounded-xl shadow-md p-6 h-full">
+                            <h3 class="font-bold text-xl mb-4 text-gray-800">Your Order Summary</h3>
+                            <div id="order-items-container" class="space-y-3 mb-4 max-h-60 overflow-y-auto pr-2">
+                                <!-- Items will be added here dynamically -->
+                                <p class="text-gray-500 text-center" id="empty-order-message">Add items to see them here.</p>
+                            </div>
+                            <div class="border-t pt-4">
+                               <p class="text-sm text-gray-600 mb-2">A 10% discount is applied for orders over ₹5,000.</p>
+                                <div id="discount-display" class="text-green-600 font-semibold hidden">- ₹0</div>
+                                <div class="flex justify-between items-center mt-2">
+                                    <p class="font-semibold text-lg">Total:</p>
+                                    <div class="font-black text-2xl lg:text-3xl text-lime-600" id="total-price">₹0</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -388,25 +440,82 @@
         });
 
         // --- Bulk Order Calculator Logic ---
-        const employeeSlider = document.getElementById('employees');
-        const employeeCountSpan = document.getElementById('employee-count');
+        const orderItemsContainer = document.getElementById('order-items-container');
         const totalPriceSpan = document.getElementById('total-price');
-        const avgPrice = 220; // Average price per meal for calculation
+        const emptyOrderMessage = document.getElementById('empty-order-message');
+        const discountDisplay = document.getElementById('discount-display');
+        
+        let order = {};
 
-        function calculateBulkPrice() {
-            const employeeCount = parseInt(employeeSlider.value);
-            let total = employeeCount * avgPrice;
+        function addItem(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const selectedValue = dropdown.value;
+            const [name, price] = selectedValue.split('-');
 
-            if (employeeCount > 50) {
-                total *= 0.90; // 10% discount
+            if (order[name]) {
+                order[name].quantity++;
+            } else {
+                order[name] = {
+                    price: parseInt(price),
+                    quantity: 1
+                };
             }
+            updateOrderSummary();
+        }
 
-            employeeCountSpan.textContent = employeeCount;
-            totalPriceSpan.textContent = `₹${Math.round(total).toLocaleString('en-IN')}`;
+        function changeQuantity(name, change) {
+            if (order[name]) {
+                order[name].quantity += change;
+                if (order[name].quantity <= 0) {
+                    delete order[name];
+                }
+                updateOrderSummary();
+            }
         }
         
-        employeeSlider.addEventListener('input', calculateBulkPrice);
-        document.addEventListener('DOMContentLoaded', calculateBulkPrice);
+        function updateOrderSummary() {
+            orderItemsContainer.innerHTML = '';
+            let subtotal = 0;
+
+            const itemNames = Object.keys(order);
+
+            if (itemNames.length === 0) {
+                orderItemsContainer.appendChild(emptyOrderMessage);
+                emptyOrderMessage.style.display = 'block';
+            } else {
+                 emptyOrderMessage.style.display = 'none';
+                 itemNames.forEach(name => {
+                    const item = order[name];
+                    subtotal += item.price * item.quantity;
+
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'flex justify-between items-center text-sm';
+                    itemElement.innerHTML = `
+                        <span class="flex-grow pr-2">${name}</span>
+                        <div class="flex items-center">
+                            <button onclick="changeQuantity('${name}', -1)" class="font-bold w-6 h-6 bg-gray-200 rounded-full">-</button>
+                            <span class="w-8 text-center font-semibold">${item.quantity}</span>
+                            <button onclick="changeQuantity('${name}', 1)" class="font-bold w-6 h-6 bg-gray-200 rounded-full">+</button>
+                        </div>
+                    `;
+                    orderItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            let discount = 0;
+            if (subtotal > 5000) {
+                discount = subtotal * 0.10;
+                discountDisplay.textContent = `- ₹${discount.toFixed(2)}`;
+                discountDisplay.classList.remove('hidden');
+            } else {
+                discountDisplay.classList.add('hidden');
+            }
+
+            const total = subtotal - discount;
+            totalPriceSpan.textContent = `₹${total.toFixed(2)}`;
+        }
+        
+        document.addEventListener('DOMContentLoaded', updateOrderSummary);
 
     </script>
 
