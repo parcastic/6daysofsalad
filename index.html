@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6 Days of Salad | Fresh & Healthy Meals in Gurgaon</title>
+    <meta name="description" content="Fuel your body and beat corporate fatigue with delicious, healthy salads delivered to you. 6 days of health, 1 day guilt-free.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=PASTE_YOUR_GOOGLE_ANALYTICS_ID_HERE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // gtag('config', 'PASTE_YOUR_GOOGLE_ANALYTICS_ID_HERE');
+
+      // Function to track Instagram clicks
+      function trackInstaClick() {
+        gtag('event', 'click', {
+          'event_category': 'social',
+          'event_label': 'instagram_follow'
+        });
+      }
+    </script>
+
+
+    <style>
+        :root {
+            --primary-green: #2E7D32;
+            --light-green: #C8E6C9;
+            --dark-text: #212121;
+            --light-text: #FAFAFA;
+            --bg-color: #F7F9F7;
+            --section-height: 100vh;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            overscroll-behavior: none;
+        }
+
+        /* --- 3D Animation Canvas --- */
+        #animation-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            outline: none;
+            z-index: 1;
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        header .logo img {
+            width: 100px;
+            height: auto;
+        }
+
+        /* --- Scrolling Content Sections --- */
+        .scroll-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: var(--section-height);
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .text-content {
+            background-color: rgba(247, 249, 247, 0.8); /* Semi-transparent bg */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+        }
+
+        .scroll-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .scroll-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* --- Specific Sections --- */
+        #menu, #cta, footer {
+            position: relative;
+            z-index: 10;
+            background-color: var(--bg-color);
+            padding: 60px 20px;
+        }
+
+        #menu h2, #cta h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .menu-item h3 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .cta-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .cta-container p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .qr-code img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .cta-buttons a {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--light-text);
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-buttons a:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: var(--light-green);
+            text-decoration: none;
+        }
+        
+        /* --- Media Queries for Larger Screens --- */
+        @media (min-width: 768px) {
+            .text-content {
+                max-width: 600px;
+            }
+             .scroll-section h1 {
+                font-size: 3.5rem;
+            }
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="6 Days of Salad Logo">
+        </div>
+    </header>
+
+    <canvas id="animation-canvas"></canvas>
+
+    <main>
+        <section id="hero" class="scroll-section">
+            <div class="text-content">
+                <h1>Your Guilt-Free Fuel for the Daily Grind.</h1>
+            </div>
+        </section>
+
+        <section id="problem" class="scroll-section">
+            <div class="text-content">
+                <h2>Tired of Fatigue? Glued to the Screen?</h2>
+                <p>Long hours at a desk and junk food lead to fatigue and dullness. It's time to break the cycle.</p>
+            </div>
+        </section>
+
+        <section id="solution" class="scroll-section">
+            <div class="text-content">
+                <h2>Reclaim Your Energy. Eat Well, Live Fully.</h2>
+                <p>Our "6 Days of Salad" concept helps you build a healthy routine, fighting fatigue and preventing lifestyle diseases. Eat healthy for 6 days, and enjoy the 7th day guilt-free!</p>
+            </div>
+        </section>
+        
+        <section class="scroll-section"></section>
+
+        <section id="menu">
+            <h2>Our Fresh Offerings</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h3>Chicken Caesar Salad</h3>
+                    <p>Crisp romaine, grilled chicken, parmesan, and a classic caesar dressing.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Chicken Pepper Salad</h3>
+                    <p>A vibrant mix of bell peppers, grilled chicken, and a zesty vinaigrette.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Sautéed Vegetables</h3>
+                    <p>A warm, healthy bowl of lightly sautéed seasonal vegetables.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Grilled Chicken Pesto Sandwich</h3>
+                    <p>Juicy grilled chicken with fresh pesto and tomatoes on whole grain bread.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="cta">
+            <h2>Ready to Start Your Healthy Week?</h2>
+             <div class="cta-container">
+                <p>Scan the code to check our daily menu on WhatsApp and confirm delivery to your location!</p>
+                <div class="qr-code">
+                    <a href="https://wa.me/919211724290?text=Hi!%20What's%20on%20the%20menu%20today?%20My%20delivery%20pincode%20is:">
+                        <img src="images/qr_code.png" alt="WhatsApp QR Code for 6 Days of Salad Menu">
+                    </a>
+                </div>
+                <p>Follow us on Instagram for daily health tips!</p>
+                <div class="cta-buttons">
+                    <a href="https://www.instagram.com/6daysofsalad" target="_blank" onclick="trackInstaClick()">Follow @6daysofsalad</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 - 6 Days of Salad</p>
+            <p>H222, Sushant Shopping Arcade, Sushant Lok 1, Gurgaon</p>
+            <p>Email: <a href="mailto:6daysofsalad@gmail.com">6daysofsalad@gmail.com</a></p>
+        </footer>
+
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // --- 3D SCENE SETUP ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({
+            canvas: document.querySelector('#animation-canvas'),
+            alpha: true // Make canvas transparent
+        });
+
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.position.setZ(5);
+
+        // --- LIGHTING ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+
+        // --- 3D OBJECTS (PLACEHOLDERS) ---
+        // In a real project, you would load .glb or .gltf models here.
+        // For now, we'll use basic shapes to represent the salad components.
+        
+        // The Bowl
+        const bowlGeometry = new THREE.TorusGeometry(1.5, 0.2, 16, 100);
+        const bowlMaterial = new THREE.MeshStandardMaterial({ color: 0xC8E6C9, roughness: 0.5 });
+        const bowl = new THREE.Mesh(bowlGeometry, bowlMaterial);
+        scene.add(bowl);
+        
+        // Lettuce (group of small spheres)
+        const lettuceGroup = new THREE.Group();
+        const lettuceGeometry = new THREE.SphereGeometry(0.2, 16, 16);
+        const lettuceMaterial = new THREE.MeshStandardMaterial({ color: 0x4CAF50, roughness: 0.8 });
+        for(let i = 0; i < 30; i++) {
+            const lettuce = new THREE.Mesh(lettuceGeometry, lettuceMaterial);
+            let x = (Math.random() - 0.5) * 2;
+            let y = (Math.random() - 0.5) * 0.5;
+            let z = (Math.random() - 0.5) * 2;
+            let scale = Math.random() * 0.5 + 0.5;
+            let targetY = y - 0.2; // final position in bowl
+            
+            lettuce.position.set(x, y + 10, z); // Start high up
+            lettuce.scale.set(scale, scale, scale);
+            lettuce.userData.targetY = targetY; // Store target for animation
+            lettuceGroup.add(lettuce);
+        }
+        scene.add(lettuceGroup);
+
+        // Toppings (smaller cubes)
+        const toppingsGroup = new THREE.Group();
+        const toppingGeometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+        const toppingMaterial = new THREE.MeshStandardMaterial({ color: 0xffa726 });
+        for(let i=0; i<20; i++) {
+            const topping = new THREE.Mesh(toppingGeometry, toppingMaterial);
+            let x = (Math.random() - 0.5) * 2;
+            let y = (Math.random() - 0.5) * 0.5;
+            let z = (Math.random() - 0.5) * 2;
+            topping.position.set(x, y + 20, z); // Start even higher
+            toppingsGroup.add(topping);
+        }
+        scene.add(toppingsGroup);
+
+        // --- SCROLL-BASED ANIMATION ---
+        function updateAnimation() {
+            const scrollY = window.scrollY;
+            const scrollHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = scrollY / (scrollHeight / 2.5); // Control speed of animation
+
+            // Animate Bowl rotation
+            bowl.rotation.x = scrollPercent * Math.PI;
+            bowl.rotation.y = scrollPercent * Math.PI * 0.5;
+            
+            // Animate Lettuce falling in
+            lettuceGroup.children.forEach(lettuce => {
+                let startPos = 10;
+                let endPos = lettuce.userData.targetY;
+                // Animate between scroll 10% and 50%
+                let progress = Math.max(0, Math.min(1, (scrollPercent - 0.1) / 0.4)); 
+                lettuce.position.y = startPos * (1 - progress) + endPos * progress;
+            });
+            
+            // Animate Toppings falling in
+            toppingsGroup.children.forEach(topping => {
+                let startPos = 20;
+                let endPos = 0;
+                // Animate between scroll 40% and 80%
+                let progress = Math.max(0, Math.min(1, (scrollPercent - 0.4) / 0.4));
+                topping.position.y = startPos * (1 - progress) + endPos * progress;
+            });
+        }
+        window.addEventListener('scroll', updateAnimation);
+
+
+        // --- RENDER LOOP ---
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // --- RESIZE HANDLER ---
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+    </script>
+</body>
+</html>
