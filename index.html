@@ -6,17 +6,20 @@
     <title>6 Days of Salad | Fresh & Healthy Meals in Gurgaon</title>
     <meta name="description" content="Fuel your body and beat corporate fatigue with delicious, healthy salads delivered to you. 6 days of health, 1 day guilt-free.">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Google Analytics - Global Site Tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=PASTE_YOUR_GOOGLE_ANALYTICS_ID_HERE"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      // gtag('config', 'PASTE_YOUR_GOOGLE_ANALYTICS_ID_HERE');
+      // <!-- PASTE YOUR GOOGLE ANALYTICS TAG ID HERE, for example: 'G-XXXXXXXXXX' -->
+      gtag('config', 'PASTE_YOUR_GOOGLE_ANALYTICS_ID_HERE');
 
       // Function to track Instagram clicks
       function trackInstaClick() {
@@ -34,7 +37,7 @@
             --light-green: #C8E6C9;
             --dark-text: #212121;
             --light-text: #FAFAFA;
-            --bg-color: #F7F9F7;
+            --bg-color: #f0f2f0; /* A very light, neutral background */
             --section-height: 100vh;
         }
 
@@ -50,14 +53,14 @@
             color: var(--dark-text);
             overscroll-behavior: none;
         }
-
+        
         /* --- 3D Animation Canvas --- */
         #animation-canvas {
             position: fixed;
             top: 0;
             left: 0;
             outline: none;
-            z-index: 1;
+            z-index: 1; /* Behind text, in front of bg */
         }
 
         /* --- Header --- */
@@ -82,45 +85,116 @@
             align-items: center;
             height: var(--section-height);
             position: relative;
-            z-index: 10;
+            z-index: 10; /* In front of canvas */
             padding: 20px;
             text-align: center;
         }
 
         .text-content {
-            background-color: rgba(247, 249, 247, 0.8); /* Semi-transparent bg */
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            background-color: rgba(240, 242, 240, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             padding: 30px;
             border-radius: 15px;
             max-width: 500px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
         .scroll-section h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 1rem;
             font-weight: 700;
+        }
+        
+        .scroll-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .scroll-section p {
             font-size: 1.1rem;
             line-height: 1.6;
         }
+        
+        .scroll-section .statistic {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
 
-        /* --- Specific Sections --- */
-        #menu, #cta, footer {
+        /* --- Static Content Sections --- */
+        .static-section {
             position: relative;
             z-index: 10;
             background-color: var(--bg-color);
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
 
-        #menu h2, #cta h2 {
+        .static-section h2 {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
         }
 
+        /* --- Veggie Cutting Grid Effect --- */
+        .veggie-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .veggie-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .veggie-item img {
+            width: 100%;
+            display: block;
+            border-radius: 15px;
+            transition: transform 0.5s ease;
+        }
+        
+        .veggie-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .veggie-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-green);
+            transform-origin: left;
+            transform: scaleX(1);
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .veggie-item.is-visible .veggie-overlay {
+            transform: scaleX(0);
+        }
+        
+        .veggie-item h3 {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            color: white;
+            background-color: rgba(0,0,0,0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* --- Menu Grid --- */
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -131,7 +205,7 @@
 
         .menu-item {
             background-color: #fff;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             text-align: center;
@@ -142,6 +216,7 @@
             margin-bottom: 10px;
         }
 
+        /* --- CTA Section --- */
         .cta-container {
             max-width: 600px;
             margin: 0 auto;
@@ -157,38 +232,79 @@
             width: 200px;
             height: 200px;
             margin-bottom: 20px;
-        }
-
-        .cta-buttons a {
-            display: inline-block;
-            background-color: var(--primary-green);
-            color: var(--light-text);
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s ease;
-        }
-
-        .cta-buttons a:hover {
-            transform: scale(1.05);
-        }
-
-        /* --- Footer --- */
-        footer {
-            background-color: var(--dark-text);
-            color: var(--light-text);
-            text-align: center;
-            padding: 40px 20px;
+            border-radius: 10px;
         }
         
-        footer p {
-            margin-bottom: 10px;
+        /* --- Interactive Footer --- */
+        footer {
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            text-align: center;
+            padding: 80px 20px;
+            border-top: 1px solid #ddd;
+            position: relative;
+            z-index: 10;
         }
 
-        footer a {
-            color: var(--light-green);
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+
+        .contact-link {
+            position: relative;
+            display: block;
+            padding: 2rem;
+            border: 1px solid #ccc;
+            border-radius: 15px;
             text-decoration: none;
+            color: var(--dark-text);
+            font-size: 1.5rem;
+            font-weight: 600;
+            overflow: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .contact-link:hover {
+            background-color: var(--primary-green);
+            color: var(--light-text);
+            border-color: var(--primary-green);
+        }
+        
+        .contact-link span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .floating-icon {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-size: cover;
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none; /* So it doesn't interfere with hover */
+        }
+
+        .contact-link:hover .floating-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .footer-info {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .footer-info p {
+            margin-bottom: 10px;
         }
         
         /* --- Media Queries for Larger Screens --- */
@@ -197,10 +313,17 @@
                 max-width: 600px;
             }
              .scroll-section h1 {
-                font-size: 3.5rem;
+                font-size: 2.8rem;
+            }
+            .veggie-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
             .menu-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-link {
+                font-size: 2.5rem;
+                padding: 2.5rem;
             }
         }
     </style>
@@ -209,176 +332,212 @@
 
     <header>
         <div class="logo">
-            <img src="images/logo.png" alt="6 Days of Salad Logo">
+            <img src="images/logo.png" alt="6 Days of Salad Logo" onerror="this.style.display='none'">
         </div>
     </header>
 
     <canvas id="animation-canvas"></canvas>
 
     <main>
-        <section id="hero" class="scroll-section">
+        <!-- STORY SECTIONS -->
+        <section class="scroll-section">
             <div class="text-content">
-                <h1>Your Guilt-Free Fuel for the Daily Grind.</h1>
+                <span class="statistic">56%</span>
+                <h1>Of India's Health Problems Start on the Plate.</h1>
+                <p>According to the ICMR, over half of the nation's disease burden is due to unhealthy diets. It's a silent epidemic.</p>
             </div>
         </section>
-
-        <section id="problem" class="scroll-section">
+        <section class="scroll-section">
             <div class="text-content">
-                <h2>Tired of Fatigue? Glued to the Screen?</h2>
-                <p>Long hours at a desk and junk food lead to fatigue and dullness. It's time to break the cycle.</p>
+                <h2>Your Desk Job is a Hidden Health Risk.</h2>
+                <p>Long hours sitting down dramatically increase health risks. Studies show nearly <strong>60% of professionals</strong> in sedentary jobs have abdominal obesity, a key risk factor for chronic disease.</p>
             </div>
         </section>
-
-        <section id="solution" class="scroll-section">
+        <section class="scroll-section">
+             <div class="text-content">
+                <h2>But it Doesn't Have to Be Your Story.</h2>
+                <p>You have the power to choose a different path. A path of energy, vitality, and health. It all starts with your next meal.</p>
+            </div>
+        </section>
+        <section class="scroll-section">
             <div class="text-content">
                 <h2>Reclaim Your Energy. Eat Well, Live Fully.</h2>
-                <p>Our "6 Days of Salad" concept helps you build a healthy routine, fighting fatigue and preventing lifestyle diseases. Eat healthy for 6 days, and enjoy the 7th day guilt-free!</p>
+                <p>Our "6 Days of Salad" concept helps you build a healthy routine. 6 days of health, 1 day guilt-free!</p>
             </div>
         </section>
-        
-        <section class="scroll-section"></section>
+        <section class="scroll-section">
+             <div class="text-content">
+                <h2>Fresh Ingredients, The Foundation of Health.</h2>
+                <p>We start with crisp, vibrant greens to build your perfect salad.</p>
+            </div>
+        </section>
+        <section class="scroll-section">
+             <div class="text-content">
+                <h2>Your Masterpiece is Ready.</h2>
+                <p>Healthy, delicious, and crafted just for you.</p>
+            </div>
+        </section>
 
-        <section id="menu">
-            <h2>Our Fresh Offerings</h2>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <h3>Chicken Caesar Salad</h3>
-                    <p>Crisp romaine, grilled chicken, parmesan, and a classic caesar dressing.</p>
-                </div>
-                <div class="menu-item">
-                    <h3>Chicken Pepper Salad</h3>
-                    <p>A vibrant mix of bell peppers, grilled chicken, and a zesty vinaigrette.</p>
-                </div>
-                <div class="menu-item">
-                    <h3>Sautéed Vegetables</h3>
-                    <p>A warm, healthy bowl of lightly sautéed seasonal vegetables.</p>
-                </div>
-                <div class="menu-item">
-                    <h3>Grilled Chicken Pesto Sandwich</h3>
-                    <p>Juicy grilled chicken with fresh pesto and tomatoes on whole grain bread.</p>
-                </div>
+        <!-- STATIC CONTENT SECTIONS -->
+        <section id="veggies" class="static-section">
+            <h2>Our Fresh Ingredients</h2>
+            <div class="veggie-grid">
+                <div class="veggie-item"><img src="https://placehold.co/400x400/8BC34A/FFFFFF?text=Lettuce" alt="Fresh Lettuce"><div class="veggie-overlay"></div><h3>Lettuce</h3></div>
+                <div class="veggie-item"><img src="https://placehold.co/400x400/F44336/FFFFFF?text=Tomato" alt="Ripe Tomatoes"><div class="veggie-overlay"></div><h3>Tomatoes</h3></div>
+                <div class="veggie-item"><img src="https://placehold.co/400x400/4CAF50/FFFFFF?text=Cucumber" alt="Crisp Cucumber"><div class="veggie-overlay"></div><h3>Cucumbers</h3></div>
+                <div class="veggie-item"><img src="https://placehold.co/400x400/FF9800/FFFFFF?text=Pepper" alt="Sweet Bell Peppers"><div class="veggie-overlay"></div><h3>Bell Peppers</h3></div>
+                <div class="veggie-item"><img src="https://placehold.co/400x400/795548/FFFFFF?text=Chicken" alt="Grilled Chicken"><div class="veggie-overlay"></div><h3>Grilled Chicken</h3></div>
+                <div class="veggie-item"><img src="https://placehold.co/400x400/FFEB3B/FFFFFF?text=Corn" alt="Sweet Corn"><div class="veggie-overlay"></div><h3>Sweet Corn</h3></div>
             </div>
         </section>
-        
-        <section id="cta">
-            <h2>Ready to Start Your Healthy Week?</h2>
+        <section id="menu" class="static-section">
+            <h2>Our Menu</h2>
+            <div class="menu-grid">
+                <div class="menu-item"><h3>Chicken Caesar Salad</h3><p>Crisp romaine, grilled chicken, parmesan, and a classic caesar dressing.</p></div>
+                <div class="menu-item"><h3>Chicken Pepper Salad</h3><p>A vibrant mix of bell peppers, grilled chicken, and a zesty vinaigrette.</p></div>
+                <div class="menu-item"><h3>Sautéed Vegetables</h3><p>A warm, healthy bowl of lightly sautéed seasonal vegetables.</p></div>
+                <div class="menu-item"><h3>Grilled Chicken Pesto Sandwich</h3><p>Juicy grilled chicken with fresh pesto and tomatoes on whole grain bread.</p></div>
+            </div>
+        </section>
+        <section id="cta" class="static-section">
+            <h2>Get Today's Menu Instantly</h2>
              <div class="cta-container">
-                <p>Scan the code to check our daily menu on WhatsApp and confirm delivery to your location!</p>
+                <p>Scan the code to start a chat with us on WhatsApp and see what's fresh on the menu today!</p>
                 <div class="qr-code">
                     <a href="https://wa.me/919211724290?text=Hi!%20What's%20on%20the%20menu%20today?%20My%20delivery%20pincode%20is:">
-                        <img src="images/qr_code.png" alt="WhatsApp QR Code for 6 Days of Salad Menu">
+                        <img src="images/qr_code.png" alt="WhatsApp QR Code for 6 Days of Salad Menu" onerror="this.src='https://placehold.co/200x200/CCCCCC/FFFFFF?text=QR+Code';">
                     </a>
-                </div>
-                <p>Follow us on Instagram for daily health tips!</p>
-                <div class="cta-buttons">
-                    <a href="https://www.instagram.com/6daysofsalad" target="_blank" onclick="trackInstaClick()">Follow @6daysofsalad</a>
                 </div>
             </div>
         </section>
-
-        <footer>
-            <p>&copy; 2025 - 6 Days of Salad</p>
-            <p>H222, Sushant Shopping Arcade, Sushant Lok 1, Gurgaon</p>
-            <p>Email: <a href="mailto:6daysofsalad@gmail.com">6daysofsalad@gmail.com</a></p>
-        </footer>
-
     </main>
+
+    <!-- INTERACTIVE FOOTER -->
+    <footer>
+        <div class="contact-links">
+            <a href="mailto:6daysofsalad@gmail.com" class="contact-link">
+                <span>Email Us</span>
+                <div class="floating-icon" style="background-image: url('https://placehold.co/80x80/757575/FFFFFF?text=@');"></div>
+            </a>
+            <a href="https://www.instagram.com/6daysofsalad" target="_blank" class="contact-link" onclick="trackInstaClick()">
+                <span>Follow on Instagram</span>
+                <div class="floating-icon" style="background-image: url('https://placehold.co/80x80/E1306C/FFFFFF?text=Insta');"></div>
+            </a>
+            <a href="https://wa.me/919211724290?text=Hi!%20What's%20on%20the%20menu%20today?%20My%20delivery%20pincode%20is:" target="_blank" class="contact-link">
+                <span>Chat on WhatsApp</span>
+                <div class="floating-icon" style="background-image: url('https://placehold.co/80x80/25D366/FFFFFF?text=Chat');"></div>
+            </a>
+        </div>
+        <div class="footer-info">
+             <p>&copy; 2025 - 6 Days of Salad</p>
+             <p>H222, Sushant Shopping Arcade, Sushant Lok 1, Gurgaon</p>
+        </div>
+    </footer>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
     <script>
         // --- 3D SCENE SETUP ---
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({
-            canvas: document.querySelector('#animation-canvas'),
-            alpha: true // Make canvas transparent
-        });
-
+        const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#animation-canvas'), alpha: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
         camera.position.setZ(5);
 
         // --- LIGHTING ---
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
         scene.add(ambientLight);
         const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(5, 5, 5);
+        directionalLight.position.set(5, 10, 7.5);
         scene.add(directionalLight);
-
-        // --- 3D OBJECTS (PLACEHOLDERS) ---
-        // In a real project, you would load .glb or .gltf models here.
-        // For now, we'll use basic shapes to represent the salad components.
         
-        // The Bowl
-        const bowlGeometry = new THREE.TorusGeometry(1.5, 0.2, 16, 100);
-        const bowlMaterial = new THREE.MeshStandardMaterial({ color: 0xC8E6C9, roughness: 0.5 });
-        const bowl = new THREE.Mesh(bowlGeometry, bowlMaterial);
-        scene.add(bowl);
+        // --- BACKGROUND RING ---
+        const ringGeometry = new THREE.TorusGeometry(3, 0.05, 16, 100);
+        const ringMaterial = new THREE.MeshStandardMaterial({ color: 0xcccccc, roughness: 0.8 });
+        const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+        scene.add(ring);
+
+        // --- DEFORMING SMILEY SETUP ---
+        const smileyGroup = new THREE.Group();
+        const headGeometry = new THREE.SphereGeometry(1.5, 64, 64);
+        const headMaterial = new THREE.MeshStandardMaterial({ color: 0xFFEB3B, roughness: 0.4 });
+        const head = new THREE.Mesh(headGeometry, headMaterial);
         
-        // Lettuce (group of small spheres)
-        const lettuceGroup = new THREE.Group();
-        const lettuceGeometry = new THREE.SphereGeometry(0.2, 16, 16);
-        const lettuceMaterial = new THREE.MeshStandardMaterial({ color: 0x4CAF50, roughness: 0.8 });
-        for(let i = 0; i < 30; i++) {
-            const lettuce = new THREE.Mesh(lettuceGeometry, lettuceMaterial);
-            let x = (Math.random() - 0.5) * 2;
-            let y = (Math.random() - 0.5) * 0.5;
-            let z = (Math.random() - 0.5) * 2;
-            let scale = Math.random() * 0.5 + 0.5;
-            let targetY = y - 0.2; // final position in bowl
-            
-            lettuce.position.set(x, y + 10, z); // Start high up
-            lettuce.scale.set(scale, scale, scale);
-            lettuce.userData.targetY = targetY; // Store target for animation
-            lettuceGroup.add(lettuce);
-        }
-        scene.add(lettuceGroup);
+        // Store original vertex positions for deformation
+        const originalPositions = headGeometry.attributes.position.clone();
 
-        // Toppings (smaller cubes)
-        const toppingsGroup = new THREE.Group();
-        const toppingGeometry = new THREE.BoxGeometry(0.1, 0.1, 0.1);
-        const toppingMaterial = new THREE.MeshStandardMaterial({ color: 0xffa726 });
-        for(let i=0; i<20; i++) {
-            const topping = new THREE.Mesh(toppingGeometry, toppingMaterial);
-            let x = (Math.random() - 0.5) * 2;
-            let y = (Math.random() - 0.5) * 0.5;
-            let z = (Math.random() - 0.5) * 2;
-            topping.position.set(x, y + 20, z); // Start even higher
-            toppingsGroup.add(topping);
-        }
-        scene.add(toppingsGroup);
+        const eyeGeometry = new THREE.SphereGeometry(0.15, 32, 32);
+        const eyeMaterial = new THREE.MeshBasicMaterial({ color: 0x212121 });
+        const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        leftEye.position.set(-0.5, 0.3, 1.4);
+        const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        rightEye.position.set(0.5, 0.3, 1.4);
 
-        // --- SCROLL-BASED ANIMATION ---
-        function updateAnimation() {
+        const mouthCurve = new THREE.CatmullRomCurve3([
+            new THREE.Vector3(-0.7, -0.5, 1.3),
+            new THREE.Vector3(0, -0.8, 1.3),
+            new THREE.Vector3(0.7, -0.5, 1.3),
+        ]);
+        const mouthGeometry = new THREE.TubeGeometry(mouthCurve, 20, 0.05, 8, false);
+        const mouthMaterial = new THREE.MeshBasicMaterial({ color: 0x212121 });
+        const mouth = new THREE.Mesh(mouthGeometry, mouthMaterial);
+
+        smileyGroup.add(head, leftEye, rightEye, mouth);
+        scene.add(smileyGroup);
+
+        // --- SCROLL ANIMATION LOGIC ---
+        const totalAnimSections = 6;
+        const sectionHeight = window.innerHeight;
+
+        function lerp(start, end, amount) {
+            return (1 - amount) * start + amount * end;
+        }
+
+        function update3DAnimation() {
             const scrollY = window.scrollY;
-            const scrollHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = scrollY / (scrollHeight / 2.5); // Control speed of animation
+            const progress = Math.min(1, Math.max(0, scrollY / (sectionHeight * (totalAnimSections - 1))));
 
-            // Animate Bowl rotation
-            bowl.rotation.x = scrollPercent * Math.PI;
-            bowl.rotation.y = scrollPercent * Math.PI * 0.5;
+            // Animate Ring
+            ring.rotation.x = progress * Math.PI * 0.5;
+            ring.rotation.y = progress * Math.PI;
+
+            // Animate Smiley
+            const deformation = Math.max(0, 1 - progress * 2); // Deforms at the start, becomes perfect at 50% scroll
+            const happiness = Math.max(0, (progress - 0.3) / 0.7); // Becomes happy after 30% scroll
+
+            // Deform Head
+            const headPositions = head.geometry.attributes.position;
+            const time = performance.now() * 0.001;
+            for (let i = 0; i < headPositions.count; i++) {
+                const ox = originalPositions.getX(i);
+                const oy = originalPositions.getY(i);
+                const oz = originalPositions.getZ(i);
+
+                // Simple noise-like effect for distortion
+                const noise = Math.sin(ox * 2 + time) * Math.sin(oy * 2 + time) * deformation * 0.1;
+                
+                headPositions.setX(i, ox + noise);
+                headPositions.setY(i, oy + noise);
+                headPositions.setZ(i, oz + noise);
+            }
+            head.geometry.attributes.position.needsUpdate = true;
+            head.geometry.computeVertexNormals();
             
-            // Animate Lettuce falling in
-            lettuceGroup.children.forEach(lettuce => {
-                let startPos = 10;
-                let endPos = lettuce.userData.targetY;
-                // Animate between scroll 10% and 50%
-                let progress = Math.max(0, Math.min(1, (scrollPercent - 0.1) / 0.4)); 
-                lettuce.position.y = startPos * (1 - progress) + endPos * progress;
-            });
-            
-            // Animate Toppings falling in
-            toppingsGroup.children.forEach(topping => {
-                let startPos = 20;
-                let endPos = 0;
-                // Animate between scroll 40% and 80%
-                let progress = Math.max(0, Math.min(1, (scrollPercent - 0.4) / 0.4));
-                topping.position.y = startPos * (1 - progress) + endPos * progress;
-            });
+            // Squash and stretch effect
+            head.scale.y = 1 - (deformation * 0.3);
+            head.scale.x = 1 + (deformation * 0.2);
+            head.scale.z = 1 + (deformation * 0.2);
+
+            // Animate Mouth
+            const mouthPoints = mouth.geometry.parameters.path.points;
+            const frownY = -0.8;
+            const smileY = -0.2;
+            mouthPoints[1].y = lerp(frownY, smileY, happiness);
+            const newMouthGeometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(mouthPoints), 20, 0.05, 8, false);
+            mouth.geometry.dispose();
+            mouth.geometry = newMouthGeometry;
         }
-        window.addEventListener('scroll', updateAnimation);
-
+        window.addEventListener('scroll', update3DAnimation);
 
         // --- RENDER LOOP ---
         function animate() {
@@ -394,6 +553,29 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
+        // --- VEGGIE GRID INTERSECTION OBSERVER ---
+        const veggieItems = document.querySelectorAll('.veggie-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.5 });
+        veggieItems.forEach(item => observer.observe(item));
+        
+        // --- CONTACT LINK ANIMATION ---
+        const contactLinks = document.querySelectorAll('.contact-link');
+        contactLinks.forEach(link => {
+            const icon = link.querySelector('.floating-icon');
+            link.addEventListener('mousemove', (e) => {
+                const rect = link.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                icon.style.left = `${x}px`;
+                icon.style.top = `${y}px`;
+            });
+        });
     </script>
 </body>
 </html>
