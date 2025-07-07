@@ -64,10 +64,26 @@
             font-weight: 600;
             font-size: 0.8rem;
         }
-        #frame-top { top: 0; left: 0; width: 100%; height: 50px; overflow: hidden; }
+        #frame-top { top: 0; left: 0; width: 100%; height: 50px; overflow: hidden; padding-left: 50px;}
         #frame-bottom { bottom: 0; left: 0; width: 100%; height: 50px; }
         #frame-left { top: 0; left: 0; width: 50px; height: 100%; }
         #frame-right { top: 0; right: 0; width: 50px; height: 100%; }
+        
+        #logo-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 51;
+        }
+        #logo-container img {
+            max-width: 30px;
+            height: auto;
+        }
 
         .vertical-text { writing-mode: vertical-rl; transform: rotate(180deg); }
         
@@ -154,7 +170,7 @@
             padding: 2rem;
         }
 
-        /* --- NEW: Scanner Animation --- */
+        /* --- Scanner Animation --- */
         .scanner-line {
             position: absolute;
             top: 0;
@@ -221,6 +237,81 @@
         }
         .ticket-item .ref { font-size: 0.8rem; color: #666; }
 
+        /* --- Questionnaire Section --- */
+        #questionnaire-section {
+            padding: 100px 20px;
+        }
+        .quiz-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            text-align: center;
+            color: var(--primary-green);
+            margin-bottom: 3rem;
+        }
+        .quiz-container {
+            max-width: 700px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .quiz-question-counter {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+        .progress-bar-container {
+            width: 128px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        .progress-bar {
+            width: 25%;
+            height: 100%;
+            background: var(--primary-green);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .quiz-question-text {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        .quiz-answers {
+            display: grid;
+            gap: 1rem;
+        }
+        .quiz-answer-btn {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: var(--light-text);
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .quiz-answer-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary-green);
+        }
+        .quiz-recommendation {
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+
         /* --- Footer --- */
         footer {
             text-align: center;
@@ -238,6 +329,8 @@
 
         @media (max-width: 900px) {
             #wrapper { padding: 50px 20px; }
+            #frame-left, #frame-right { display: none; }
+            #frame-top { padding-left: 0; }
             .product-section { grid-template-columns: 1fr; }
             .product-image-container { height: 50vh; }
             @keyframes scan-effect {
@@ -253,6 +346,9 @@
 <body>
     <canvas id="canvas-bg"></canvas>
 
+    <div id="logo-container">
+        <img src="images/logo.png" alt="6 Days of Salad Logo" onerror="this.style.display='none'">
+    </div>
     <div id="frame-top" class="frame">
         <div class="marquee">
             <span>FRESH DAILY</span><span>•</span><span>HIGH VIBE</span><span>•</span><span>HEALTHY FUEL</span><span>•</span><span>GURGAON</span>
@@ -311,14 +407,14 @@
             </div>
             <div class="product-image-container">
                 <div class="scanner-line"></div>
-                <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?salad,healthy,vibrant,greens')"></div>
+                <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?exercise,fitness,running,gym')"></div>
             </div>
         </section>
 
         <section id="product-wellness" class="product-section" data-item="item-wellness">
             <div class="product-image-container">
                  <div class="scanner-line"></div>
-                 <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?greens,vegetables,fresh,bowl')"></div>
+                 <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?yoga,meditation,wellness,elderly')"></div>
             </div>
             <div class="product-info">
                 <h2 class="animated-headline">
@@ -339,7 +435,37 @@
             </div>
              <div class="product-image-container">
                  <div class="scanner-line"></div>
-                 <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?food,bowl,healthy,avocado')"></div>
+                 <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?office,desk,work,computer')"></div>
+            </div>
+        </section>
+        
+        <!-- QUESTIONNAIRE SECTION -->
+        <section id="questionnaire-section" class="content-section">
+            <div class="container mx-auto px-6">
+                <h2 class="quiz-title">Find Your Perfect Dish</h2>
+                <div class="quiz-container">
+                    <div id="quiz-content">
+                        <div class="quiz-header">
+                            <span class="quiz-question-counter">Question 1 of 4</span>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                        <h3 class="quiz-question-text">Which age group are you?</h3>
+                        <div class="quiz-answers">
+                            <button class="quiz-answer-btn" data-value="20-30">20-30</button>
+                            <button class="quiz-answer-btn" data-value="30-40">30-40</button>
+                            <button class="quiz-answer-btn" data-value="40-50">40-50</button>
+                            <button class="quiz-answer-btn" data-value="50+">50+</button>
+                        </div>
+                    </div>
+                    <div id="quiz-recommendation" class="quiz-recommendation hidden">
+                        <h3 class="quiz-question-text">We Recommend...</h3>
+                        <h2 id="salad-recommendation" class="animated-headline accent" style="font-size: 2.5rem; margin-bottom: 1rem;"></h2>
+                        <p id="salad-description" style="margin-bottom: 2rem;"></p>
+                        <button class="quiz-answer-btn" id="restart-quiz" style="text-align: center;">Start Over</button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -370,36 +496,73 @@
 
         const uniforms = {
             u_time: { type: 'f', value: 0.0 },
-            u_resolution: { type: 'v2', value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
+            u_resolution: { type: 'v2', value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+            u_mouse: { type: 'v2', value: new THREE.Vector2(0.5, 0.5) }
         };
 
+        const geometry = new THREE.PlaneGeometry(2, 2);
         const material = new THREE.ShaderMaterial({
             uniforms: uniforms,
             fragmentShader: `
                 uniform vec2 u_resolution;
                 uniform float u_time;
-                float random (in vec2 st) { return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123); }
-                float noise (in vec2 st) {
-                    vec2 i = floor(st);
-                    vec2 f = fract(st);
-                    float a = random(i);
-                    float b = random(i + vec2(1.0, 0.0));
-                    float c = random(i + vec2(0.0, 1.0));
-                    float d = random(i + vec2(1.0, 1.0));
-                    vec2 u = f*f*(3.0-2.0*f);
-                    return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+
+                // Simplex 2D noise
+                vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+
+                float snoise(vec2 v) {
+                    const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+                    vec2 i  = floor(v + dot(v, C.yy));
+                    vec2 x0 = v - i + dot(i, C.xx);
+                    vec2 i1;
+                    i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+                    vec4 x12 = x0.xyxy + C.xxzz;
+                    x12.xy -= i1;
+                    i = mod(i, 289.0);
+                    vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+                    vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+                    m = m*m;
+                    m = m*m;
+                    vec3 x = 2.0 * fract(p * C.www) - 1.0;
+                    vec3 h = abs(x) - 0.5;
+                    vec3 ox = floor(x + 0.5);
+                    vec3 a0 = x - ox;
+                    m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
+                    vec3 g;
+                    g.x  = a0.x  * x0.x  + h.x  * x0.y;
+                    g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+                    return 130.0 * dot(m, g);
                 }
+
                 void main() {
                     vec2 st = gl_FragCoord.xy/u_resolution.xy;
                     st.x *= u_resolution.x/u_resolution.y;
-                    float n = noise(st * 4.0 + u_time * 0.1);
-                    vec3 color = mix(vec3(0.07, 0.07, 0.07), vec3(0.0, 0.2, 0.1), n);
+                    
+                    float n = snoise(st * 2.0 + u_time * 0.1);
+                    float m = snoise(st * 2.5 + n + u_time * 0.2);
+                    
+                    float metaballs = 0.0;
+                    for (int i=0; i<5; i++) {
+                        float fi = float(i);
+                        vec2 center = vec2(
+                            0.5 + 0.3 * sin(u_time * 0.5 + fi * 1.5),
+                            0.5 + 0.3 * cos(u_time * 0.4 + fi * 1.2)
+                        );
+                        metaballs += 1.0 / distance(st, center) * 0.02;
+                    }
+                    
+                    vec3 color = vec3(0.0);
+                    float intensity = smoothstep(0.9, 1.0, metaballs + m * 0.1);
+                    
+                    vec3 green = vec3(0.0, 1.0, 0.5); // #00FF7F
+                    color = mix(vec3(0.07, 0.07, 0.07), green, intensity); // Mix dark bg with green
+                    
                     gl_FragColor = vec4(color, 1.0);
                 }
             `
         });
 
-        const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+        const mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
         function animateBg() {
@@ -470,21 +633,17 @@
                         const itemId = productSection.dataset.item;
 
                         if (!purchasedItems.has(itemId)) {
-                            // 1. Trigger scanner animation
                             productSection.classList.add('scanning');
-                            
-                            // 2. After scan, add to ticket
                             setTimeout(() => {
                                 const ticketItem = document.getElementById(itemId);
                                 if (ticketItem) {
                                     ticketItem.classList.add('purchased');
                                     purchasedItems.add(itemId);
                                 }
-                                // Optional: remove scanning class after animation
                                 setTimeout(() => {
                                    productSection.classList.remove('scanning');
                                 }, 500);
-                            }, 1000); // Must match CSS animation duration
+                            }, 1000);
                         }
                     }
                 });
@@ -494,7 +653,6 @@
                 ticketObserver.observe(section);
             });
             
-            // Show ticket after first scroll
             const showTicketObserver = new IntersectionObserver((entries) => {
                 if(entries[0].isIntersecting) {
                     ticket.classList.add('visible');
@@ -503,6 +661,96 @@
                 }
             }, {rootMargin: "-100px 0px 0px 0px"});
             showTicketObserver.observe(document.getElementById('product-energy'));
+
+            // --- QUIZ LOGIC ---
+            const quizContent = document.getElementById('quiz-content');
+            const recommendationDiv = document.getElementById('quiz-recommendation');
+            const saladRecommendation = document.getElementById('salad-recommendation');
+            const saladDescription = document.getElementById('salad-description');
+            const restartQuizBtn = document.getElementById('restart-quiz');
+            
+            const questions = [
+                { id: 'age', text: 'Which age group are you?', answers: ['20-30', '30-40', '40-50', '50+'] },
+                { id: 'goal', text: 'What\'s your primary health goal?', answers: ['Lose Weight', 'Build Muscle', 'Boost Energy', 'A Light Meal'] },
+                { id: 'flavor', text: 'What kind of flavors do you prefer?', answers: ['Creamy & Rich', 'Zesty & Tangy', 'Savory & Herby', 'Classic & Simple'] },
+                { id: 'type', text: 'Are you looking for a Veg or Non-Veg option?', answers: ['Vegetarian', 'Non-Vegetarian'] }
+            ];
+
+            let currentQuestionIndex = 0;
+            const userAnswers = {};
+
+            function renderQuestion() {
+                const question = questions[currentQuestionIndex];
+                const quizHeader = `
+                    <div class="quiz-header">
+                        <span class="quiz-question-counter">Question ${currentQuestionIndex + 1} of ${questions.length}</span>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: ${((currentQuestionIndex + 1) / questions.length) * 100}%;"></div>
+                        </div>
+                    </div>
+                    <h3 class="quiz-question-text">${question.text}</h3>
+                    <div class="quiz-answers">
+                        ${question.answers.map(answer => `<button class="quiz-answer-btn" data-value="${answer}">${answer}</button>`).join('')}
+                    </div>
+                `;
+                quizContent.innerHTML = quizHeader;
+                
+                document.querySelectorAll('.quiz-answer-btn').forEach(button => {
+                    button.addEventListener('click', handleAnswer);
+                });
+            }
+
+            function handleAnswer(e) {
+                userAnswers[questions[currentQuestionIndex].id] = e.target.dataset.value;
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    renderQuestion();
+                } else {
+                    showRecommendation();
+                }
+            }
+
+            function showRecommendation() {
+                const { goal, type } = userAnswers;
+                let recommendedSalad = "Chicken Caesar Salad";
+                let description = "A classic choice that's always satisfying.";
+
+                if (type === 'Vegetarian') {
+                    if (goal === 'Lose Weight') {
+                        recommendedSalad = "Sautéed Vegetables Salad";
+                        description = "Light, warm, and packed with nutrients to help you meet your goals.";
+                    } else {
+                        recommendedSalad = "Creamy Corn & Spinach Sandwich";
+                        description = "A hearty and delicious vegetarian option for a fulfilling meal.";
+                    }
+                } else { // Non-Vegetarian
+                    if (goal === 'Build Muscle') {
+                        recommendedSalad = "Grilled Chicken Pesto Sandwich";
+                        description = "Packed with protein to help build muscle and satisfy serious hunger.";
+                    } else if (userAnswers.flavor === 'Zesty & Tangy') {
+                        recommendedSalad = "Chicken Pepper Salad";
+                        description = "A vibrant and tangy salad to awaken your taste buds.";
+                    } else {
+                        recommendedSalad = "Chicken Caesar Salad";
+                        description = "The perfect balance of creamy, savory, and classic flavors.";
+                    }
+                }
+
+                saladRecommendation.textContent = recommendedSalad;
+                saladDescription.textContent = description;
+                quizContent.classList.add('hidden');
+                recommendationDiv.classList.remove('hidden');
+            }
+            
+            restartQuizBtn.addEventListener('click', () => {
+                currentQuestionIndex = 0;
+                Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+                recommendationDiv.classList.add('hidden');
+                quizContent.classList.remove('hidden');
+                renderQuestion();
+            });
+
+            renderQuestion(); // Initial render
         });
 
     </script>
