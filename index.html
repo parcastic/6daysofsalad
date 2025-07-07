@@ -197,15 +197,15 @@
             position: fixed;
             bottom: 60px;
             right: 60px;
-            width: 250px;
+            width: 220px; /* Made smaller */
             background: #f0f0f0;
             color: #333;
             font-family: monospace;
-            padding: 1rem;
+            padding: 0.8rem; /* Adjusted padding */
             z-index: 100;
             border-radius: 5px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Made smaller */
             line-height: 1.4;
             white-space: pre-wrap;
             opacity: 0;
@@ -216,13 +216,17 @@
             opacity: 1;
             transform: translateY(0);
         }
+        #ticket.unstick {
+            position: absolute;
+            bottom: 50px; /* Align with bottom frame */
+        }
         #ticket-header, #ticket-footer { font-weight: bold; text-align: center; }
         #ticket-items {
             border-top: 1px dashed #333;
             border-bottom: 1px dashed #333;
             padding: 0.5rem 0;
             margin: 0.5rem 0;
-            min-height: 100px;
+            min-height: 100px; /* Adjusted height */
         }
         .ticket-item {
             display: none; /* Hidden by default */
@@ -235,7 +239,7 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .ticket-item .ref { font-size: 0.8rem; color: #666; }
+        .ticket-item .ref { font-size: 0.7rem; color: #666; }
 
         /* --- Questionnaire Section --- */
         #questionnaire-section {
@@ -317,9 +321,9 @@
             text-align: center;
             padding: 8rem 2rem;
         }
-        .contact-links { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; }
+        .contact-links { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap; }
         .contact-link {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--light-text);
             text-decoration: none;
@@ -330,15 +334,18 @@
         @media (max-width: 900px) {
             #wrapper { padding: 50px 20px; }
             #frame-left, #frame-right { display: none; }
-            #frame-top { padding-left: 0; }
+            #frame-top { padding-left: 50px; }
+            #logo-container { left: 10px; }
             .product-section { grid-template-columns: 1fr; }
             .product-image-container { height: 50vh; }
             @keyframes scan-effect {
                 to { transform: translateY(calc(50vh - 4px)); }
             }
-            #ticket { right: 20px; bottom: 60px; width: 200px; font-size: 0.8rem; }
+            #ticket { right: 10px; bottom: 60px; width: 180px; font-size: 0.7rem; }
             /* On mobile, disable fixed attachment for performance and usability */
             .product-image { background-attachment: scroll; }
+            .contact-link { font-size: 1.2rem; }
+            .quiz-question-text { font-size: 1.5rem; }
         }
         
     </style>
@@ -381,6 +388,10 @@
                 FOCUS FUEL x1<br>
                 <span class="ref">REF: 6DS-003</span>
             </div>
+            <div id="item-vibrant" class="ticket-item">
+                VIBRANT PACK x1<br>
+                <span class="ref">REF: 6DS-004</span>
+            </div>
         </div>
         <div id="ticket-footer">Thanks for your visit!</div>
     </div>
@@ -407,14 +418,14 @@
             </div>
             <div class="product-image-container">
                 <div class="scanner-line"></div>
-                <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?exercise,fitness,running,gym')"></div>
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1708792635872-37db9841487b')"></div>
             </div>
         </section>
 
         <section id="product-wellness" class="product-section" data-item="item-wellness">
             <div class="product-image-container">
                  <div class="scanner-line"></div>
-                 <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?yoga,meditation,wellness,elderly')"></div>
+                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1606307305578-9f4121dde6d9')"></div>
             </div>
             <div class="product-info">
                 <h2 class="animated-headline">
@@ -435,7 +446,21 @@
             </div>
              <div class="product-image-container">
                  <div class="scanner-line"></div>
-                 <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?office,desk,work,computer')"></div>
+                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1571935538821-8ecb6b4dea17')"></div>
+            </div>
+        </section>
+
+        <section id="product-vibrant" class="product-section" data-item="item-vibrant">
+            <div class="product-image-container">
+                 <div class="scanner-line"></div>
+                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1561993098-270ea9e1711f')"></div>
+            </div>
+            <div class="product-info">
+                <h2 class="animated-headline">
+                    <div class="word"><span>VIBRANT</span></div>
+                    <div class="word"><span class="accent">PACK.</span></div>
+                </h2>
+                <p class="intro-text">A colorful mix of the freshest ingredients to delight your senses and nourish your body from the inside out.</p>
             </div>
         </section>
         
@@ -653,6 +678,7 @@
                 ticketObserver.observe(section);
             });
             
+            const footer = document.querySelector('footer');
             const showTicketObserver = new IntersectionObserver((entries) => {
                 if(entries[0].isIntersecting) {
                     ticket.classList.add('visible');
@@ -661,6 +687,17 @@
                 }
             }, {rootMargin: "-100px 0px 0px 0px"});
             showTicketObserver.observe(document.getElementById('product-energy'));
+
+            // Observer to unstick the ticket when footer is visible
+            const unstickTicketObserver = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting) {
+                    ticket.classList.add('unstick');
+                } else {
+                    ticket.classList.remove('unstick');
+                }
+            }, { threshold: 0.1 });
+            unstickTicketObserver.observe(footer);
+
 
             // --- QUIZ LOGIC ---
             const quizContent = document.getElementById('quiz-content');
