@@ -169,7 +169,7 @@
         /* NEW: Cursive Headline */
         .cursive-headline {
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(6rem, 12vw, 8rem);
+            font-size: clamp(5rem, 12vw, 8rem);
             font-weight: 700;
             line-height: 1;
             background: linear-gradient(45deg, #2E7D32, #55a630);
@@ -177,7 +177,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-fill-color: transparent;
-            margin-bottom: 10rem;
+            margin-top: -15rem;
+            margin-bottom: 5rem;
         }
         
         .intro-text {
@@ -753,16 +754,18 @@
             const gallery = document.getElementById('gallery-section');
             const track = document.getElementById('gallery-track');
             const images = [
-                "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1887&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1605034298551-baacf17591d1", // Replacement 1
-                "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1910&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1887&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1542652366-4ffbb12e6a04?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://images.unsplash.com/photo-1655826953586-c89d87360b13?q=80&w=927&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://images.unsplash.com/photo-1662318183333-971ae1658e44?q=80&w=1887&auto=format&fit=crop", 
+                "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2120&auto=format&fit=crop", // Yoga
+                "https://images.unsplash.com/photo-1685930117806-f80a54c8a760?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=1887&auto=format&fit=crop", // Healthy sandwiches
+                "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1887&auto=format&fit=crop", // Guy working in office
+                "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop", // Guy starting in gym
+                "https://images.unsplash.com/photo-1534723452862-4c874018d66d?q=80&w=2070&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1605034298551-baacf17591d1?q=80&w=1974&auto=format&fit=crop", 
                 "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1662318183333-971ae1658e44", // Replacement 2
-                "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=2070&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1887&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1662749409764-6263154c5298?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             ];
             images.forEach(src => {
                 track.innerHTML += `
