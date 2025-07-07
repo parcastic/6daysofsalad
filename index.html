@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>6 Days of Salad | Fresh & Healthy Meals in Gurgaon</title>
-    <meta name="description" content="Fuel your body and beat corporate fatigue with delicious, healthy salads delivered to you. 6 days of health, 1 day guilt-free.">
+    <title>6 Days of Salad | High Vibe Healthy Fuel</title>
+    <meta name="description" content="We craft unique, innovative and memorable salad experiences that leave a lasting impact through freshness and flavor.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
     <!-- Google Analytics - Global Site Tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=PASTE_YOUR_GOOGLE_ANALYTICS_ID_HERE"></script>
@@ -17,27 +17,15 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      // <!-- PASTE YOUR GOOGLE ANALYTICS TAG ID HERE, for example: 'G-XXXXXXXXXX' -->
       gtag('config', 'PASTE_YOUR_GOOGLE_ANALYTICS_ID_HERE');
-
-      // Function to track Instagram clicks
-      function trackInstaClick() {
-        gtag('event', 'click', {
-          'event_category': 'social',
-          'event_label': 'instagram_follow'
-        });
-      }
     </script>
 
 
     <style>
         :root {
-            --primary-green: #2E7D32;
-            --light-green: #C8E6C9;
-            --dark-text: #212121;
-            --light-text: #FAFAFA;
-            --bg-color: #f0f2f0; /* A very light, neutral background */
+            --primary-green: #00FF7F; /* Spring Green */
+            --dark-bg: #121212;
+            --light-text: #EAEAEA;
             --section-height: 100vh;
         }
 
@@ -49,533 +37,474 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--dark-text);
+            background-color: var(--dark-bg);
+            color: var(--light-text);
             overscroll-behavior: none;
         }
         
-        /* --- 3D Animation Canvas --- */
-        #animation-canvas {
+        /* --- Fluid Background --- */
+        #canvas-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            outline: none;
-            z-index: 1; /* Behind text, in front of bg */
-        }
-
-        /* --- Header --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            z-index: 100;
-        }
-
-        header .logo img {
-            width: 100px;
-            height: auto;
-        }
-
-        /* --- Scrolling Content Sections --- */
-        .scroll-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: var(--section-height);
-            position: relative;
-            z-index: 10; /* In front of canvas */
-            padding: 20px;
-            text-align: center;
-        }
-
-        .text-content {
-            background-color: rgba(240, 242, 240, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-
-        .scroll-section h1 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .scroll-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .scroll-section p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        
-        .scroll-section .statistic {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-green);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- Static Content Sections --- */
-        .static-section {
-            position: relative;
-            z-index: 10;
-            background-color: var(--bg-color);
-            padding: 80px 20px;
-        }
-
-        .static-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-        }
-
-        /* --- Veggie Cutting Grid Effect --- */
-        .veggie-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .veggie-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .veggie-item img {
-            width: 100%;
-            display: block;
-            border-radius: 15px;
-            transition: transform 0.5s ease;
-        }
-        
-        .veggie-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .veggie-overlay {
-            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--primary-green);
-            transform-origin: left;
-            transform: scaleX(1);
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 1;
         }
 
-        .veggie-item.is-visible .veggie-overlay {
-            transform: scaleX(0);
+        /* --- Framed Layout --- */
+        .frame {
+            position: fixed;
+            background-color: var(--dark-bg);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.8rem;
         }
+        #frame-top { top: 0; left: 0; width: 100%; height: 50px; overflow: hidden; }
+        #frame-bottom { bottom: 0; left: 0; width: 100%; height: 50px; }
+        #frame-left { top: 0; left: 0; width: 50px; height: 100%; }
+        #frame-right { top: 0; right: 0; width: 50px; height: 100%; }
+
+        .vertical-text { writing-mode: vertical-rl; transform: rotate(180deg); }
         
-        .veggie-item h3 {
-            position: absolute;
-            bottom: 15px;
-            left: 15px;
-            color: white;
-            background-color: rgba(0,0,0,0.5);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 1rem;
+        .marquee {
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
         }
-
-        /* --- Menu Grid --- */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .menu-item {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-        
-        .menu-item h3 {
+        .marquee span {
+            margin: 0 2rem;
             color: var(--primary-green);
-            margin-bottom: 10px;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0%); }
+            to { transform: translateX(-50%); }
         }
 
-        /* --- CTA Section --- */
-        .cta-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .cta-container p {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        .qr-code img {
-            width: 200px;
-            height: 200px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-        }
-        
-        /* --- Interactive Footer --- */
-        footer {
-            background-color: var(--bg-color);
-            color: var(--dark-text);
-            text-align: center;
-            padding: 80px 20px;
-            border-top: 1px solid #ddd;
+        /* --- Main Content Wrapper --- */
+        #wrapper {
             position: relative;
             z-index: 10;
+            padding: 50px;
         }
 
-        .contact-links {
+        /* --- General Section Styling --- */
+        .content-section {
+            min-height: var(--section-height);
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-        }
-
-        .contact-link {
+            justify-content: center;
+            padding: 4rem 0;
             position: relative;
-            display: block;
-            padding: 2rem;
-            border: 1px solid #ccc;
-            border-radius: 15px;
-            text-decoration: none;
-            color: var(--dark-text);
-            font-size: 1.5rem;
-            font-weight: 600;
-            overflow: hidden;
-            transition: background-color 0.4s ease, color 0.4s ease;
-        }
-
-        .contact-link:hover {
-            background-color: var(--primary-green);
-            color: var(--light-text);
-            border-color: var(--primary-green);
         }
         
-        .contact-link span {
+        /* --- Animated Headlines --- */
+        .animated-headline {
+            font-size: clamp(2.5rem, 10vw, 6rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .animated-headline .word { display: inline-block; overflow: hidden; }
+        .animated-headline .word .char {
+            display: inline-block;
+            transform: translateY(110%);
+            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .animated-headline.in-view .word .char { transform: translateY(0); }
+        .animated-headline .accent { color: var(--primary-green); }
+        
+        .intro-text {
+            max-width: 600px;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
+        }
+        .intro-text.in-view { opacity: 1; transform: translateY(0); }
+
+        /* --- Product Section with Parallax --- */
+        .product-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 2rem;
+            min-height: var(--section-height);
+        }
+        .product-image-container {
             position: relative;
+            width: 100%;
+            height: 70vh;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .product-image {
+            width: 100%;
+            height: 120%; /* Taller than container for parallax */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .product-info {
+            padding: 2rem;
+        }
+
+        /* --- NEW: Scanner Animation --- */
+        .scanner-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--primary-green);
+            box-shadow: 0 0 15px var(--primary-green), 0 0 30px var(--primary-green);
+            opacity: 0;
+            transform: translateY(-10px);
             z-index: 2;
         }
-
-        .floating-icon {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background-size: cover;
-            border-radius: 50%;
-            z-index: 1;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.5);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            pointer-events: none; /* So it doesn't interfere with hover */
-        }
-
-        .contact-link:hover .floating-icon {
+        .product-section.scanning .scanner-line {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
+            animation: scan-effect 1s ease-out forwards;
         }
-        
-        .footer-info {
-            margin-top: 40px;
+        @keyframes scan-effect {
+            from { transform: translateY(-10px); }
+            to { transform: translateY(calc(70vh - 4px)); }
+        }
+
+        /* --- Billing Ticket --- */
+        #ticket {
+            position: fixed;
+            bottom: 60px;
+            right: 60px;
+            width: 250px;
+            background: #f0f0f0;
+            color: #333;
+            font-family: monospace;
+            padding: 1rem;
+            z-index: 100;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             font-size: 0.9rem;
-            color: #666;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        #ticket.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #ticket-header, #ticket-footer { font-weight: bold; text-align: center; }
+        #ticket-items {
+            border-top: 1px dashed #333;
+            border-bottom: 1px dashed #333;
+            padding: 0.5rem 0;
+            margin: 0.5rem 0;
+            min-height: 100px;
+        }
+        .ticket-item {
+            display: none; /* Hidden by default */
+        }
+        .ticket-item.purchased {
+            display: block;
+            animation: print-effect 0.3s ease-out;
+        }
+        @keyframes print-effect {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .ticket-item .ref { font-size: 0.8rem; color: #666; }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 8rem 2rem;
+        }
+        .contact-links { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; }
+        .contact-link {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-link:hover { color: var(--primary-green); }
+
+        @media (max-width: 900px) {
+            #wrapper { padding: 50px 20px; }
+            .product-section { grid-template-columns: 1fr; }
+            .product-image-container { height: 50vh; }
+            @keyframes scan-effect {
+                to { transform: translateY(calc(50vh - 4px)); }
+            }
+            #ticket { right: 20px; bottom: 60px; width: 200px; font-size: 0.8rem; }
+            /* On mobile, disable fixed attachment for performance and usability */
+            .product-image { background-attachment: scroll; }
         }
         
-        .footer-info p {
-            margin-bottom: 10px;
-        }
-        
-        /* --- Media Queries for Larger Screens --- */
-        @media (min-width: 768px) {
-            .text-content {
-                max-width: 600px;
-            }
-             .scroll-section h1 {
-                font-size: 2.8rem;
-            }
-            .veggie-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .menu-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .contact-link {
-                font-size: 2.5rem;
-                padding: 2.5rem;
-            }
-        }
     </style>
 </head>
 <body>
+    <canvas id="canvas-bg"></canvas>
 
-    <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="6 Days of Salad Logo" onerror="this.style.display='none'">
+    <div id="frame-top" class="frame">
+        <div class="marquee">
+            <span>FRESH DAILY</span><span>•</span><span>HIGH VIBE</span><span>•</span><span>HEALTHY FUEL</span><span>•</span><span>GURGAON</span>
+            <span>FRESH DAILY</span><span>•</span><span>HIGH VIBE</span><span>•</span><span>HEALTHY FUEL</span><span>•</span><span>GURGAON</span>
         </div>
-    </header>
+    </div>
+    <div id="frame-bottom" class="frame">
+        <p>&copy; 2025 - 6 DAYS OF SALAD</p>
+    </div>
+    <div id="frame-left" class="frame">
+        <p class="vertical-text">Est. 2025</p>
+    </div>
+    <div id="frame-right" class="frame">
+        <p class="vertical-text">The Salad Revolution</p>
+    </div>
 
-    <canvas id="animation-canvas"></canvas>
-
-    <main>
-        <!-- STORY SECTIONS -->
-        <section class="scroll-section">
-            <div class="text-content">
-                <span class="statistic">56%</span>
-                <h1>Of India's Health Problems Start on the Plate.</h1>
-                <p>According to the ICMR, over half of the nation's disease burden is due to unhealthy diets. It's a silent epidemic.</p>
+    <!-- The Billing Ticket -->
+    <div id="ticket">
+        <div id="ticket-header">6 DAYS OF SALAD</div>
+        <div id="ticket-items">
+            <div id="item-energy" class="ticket-item">
+                ENERGY BOOST x1<br>
+                <span class="ref">REF: 6DS-001</span>
             </div>
-        </section>
-        <section class="scroll-section">
-            <div class="text-content">
-                <h2>Your Desk Job is a Hidden Health Risk.</h2>
-                <p>Long hours sitting down dramatically increase health risks. Studies show nearly <strong>60% of professionals</strong> in sedentary jobs have abdominal obesity, a key risk factor for chronic disease.</p>
+            <div id="item-wellness" class="ticket-item">
+                WELLNESS PACK x1<br>
+                <span class="ref">REF: 6DS-002</span>
             </div>
-        </section>
-        <section class="scroll-section">
-             <div class="text-content">
-                <h2>But it Doesn't Have to Be Your Story.</h2>
-                <p>You have the power to choose a different path. A path of energy, vitality, and health. It all starts with your next meal.</p>
+             <div id="item-focus" class="ticket-item">
+                FOCUS FUEL x1<br>
+                <span class="ref">REF: 6DS-003</span>
             </div>
-        </section>
-        <section class="scroll-section">
-            <div class="text-content">
-                <h2>Reclaim Your Energy. Eat Well, Live Fully.</h2>
-                <p>Our "6 Days of Salad" concept helps you build a healthy routine. 6 days of health, 1 day guilt-free!</p>
-            </div>
-        </section>
-        <section class="scroll-section">
-             <div class="text-content">
-                <h2>Fresh Ingredients, The Foundation of Health.</h2>
-                <p>We start with crisp, vibrant greens to build your perfect salad.</p>
-            </div>
-        </section>
-        <section class="scroll-section">
-             <div class="text-content">
-                <h2>Your Masterpiece is Ready.</h2>
-                <p>Healthy, delicious, and crafted just for you.</p>
-            </div>
-        </section>
-
-        <!-- STATIC CONTENT SECTIONS -->
-        <section id="veggies" class="static-section">
-            <h2>Our Fresh Ingredients</h2>
-            <div class="veggie-grid">
-                <div class="veggie-item"><img src="https://placehold.co/400x400/8BC34A/FFFFFF?text=Lettuce" alt="Fresh Lettuce"><div class="veggie-overlay"></div><h3>Lettuce</h3></div>
-                <div class="veggie-item"><img src="https://placehold.co/400x400/F44336/FFFFFF?text=Tomato" alt="Ripe Tomatoes"><div class="veggie-overlay"></div><h3>Tomatoes</h3></div>
-                <div class="veggie-item"><img src="https://placehold.co/400x400/4CAF50/FFFFFF?text=Cucumber" alt="Crisp Cucumber"><div class="veggie-overlay"></div><h3>Cucumbers</h3></div>
-                <div class="veggie-item"><img src="https://placehold.co/400x400/FF9800/FFFFFF?text=Pepper" alt="Sweet Bell Peppers"><div class="veggie-overlay"></div><h3>Bell Peppers</h3></div>
-                <div class="veggie-item"><img src="https://placehold.co/400x400/795548/FFFFFF?text=Chicken" alt="Grilled Chicken"><div class="veggie-overlay"></div><h3>Grilled Chicken</h3></div>
-                <div class="veggie-item"><img src="https://placehold.co/400x400/FFEB3B/FFFFFF?text=Corn" alt="Sweet Corn"><div class="veggie-overlay"></div><h3>Sweet Corn</h3></div>
-            </div>
-        </section>
-        <section id="menu" class="static-section">
-            <h2>Our Menu</h2>
-            <div class="menu-grid">
-                <div class="menu-item"><h3>Chicken Caesar Salad</h3><p>Crisp romaine, grilled chicken, parmesan, and a classic caesar dressing.</p></div>
-                <div class="menu-item"><h3>Chicken Pepper Salad</h3><p>A vibrant mix of bell peppers, grilled chicken, and a zesty vinaigrette.</p></div>
-                <div class="menu-item"><h3>Sautéed Vegetables</h3><p>A warm, healthy bowl of lightly sautéed seasonal vegetables.</p></div>
-                <div class="menu-item"><h3>Grilled Chicken Pesto Sandwich</h3><p>Juicy grilled chicken with fresh pesto and tomatoes on whole grain bread.</p></div>
-            </div>
-        </section>
-        <section id="cta" class="static-section">
-            <h2>Get Today's Menu Instantly</h2>
-             <div class="cta-container">
-                <p>Scan the code to start a chat with us on WhatsApp and see what's fresh on the menu today!</p>
-                <div class="qr-code">
-                    <a href="https://wa.me/919211724290?text=Hi!%20What's%20on%20the%20menu%20today?%20My%20delivery%20pincode%20is:">
-                        <img src="images/qr_code.png" alt="WhatsApp QR Code for 6 Days of Salad Menu" onerror="this.src='https://placehold.co/200x200/CCCCCC/FFFFFF?text=QR+Code';">
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- INTERACTIVE FOOTER -->
-    <footer>
-        <div class="contact-links">
-            <a href="mailto:6daysofsalad@gmail.com" class="contact-link">
-                <span>Email Us</span>
-                <div class="floating-icon" style="background-image: url('https://placehold.co/80x80/757575/FFFFFF?text=@');"></div>
-            </a>
-            <a href="https://www.instagram.com/6daysofsalad" target="_blank" class="contact-link" onclick="trackInstaClick()">
-                <span>Follow on Instagram</span>
-                <div class="floating-icon" style="background-image: url('https://placehold.co/80x80/E1306C/FFFFFF?text=Insta');"></div>
-            </a>
-            <a href="https://wa.me/919211724290?text=Hi!%20What's%20on%20the%20menu%20today?%20My%20delivery%20pincode%20is:" target="_blank" class="contact-link">
-                <span>Chat on WhatsApp</span>
-                <div class="floating-icon" style="background-image: url('https://placehold.co/80x80/25D366/FFFFFF?text=Chat');"></div>
-            </a>
         </div>
-        <div class="footer-info">
-             <p>&copy; 2025 - 6 Days of Salad</p>
-             <p>H222, Sushant Shopping Arcade, Sushant Lok 1, Gurgaon</p>
-        </div>
-    </footer>
+        <div id="ticket-footer">Thanks for your visit!</div>
+    </div>
+
+    <div id="wrapper">
+        <section id="landing" class="content-section">
+            <h1 class="animated-headline">
+                <div class="word"><span>FRESH.</span></div>
+                <div class="word"><span class="accent">FAST.</span></div>
+                <div class="word"><span>FUEL.</span></div>
+            </h1>
+            <p class="intro-text">
+                Tired of the daily grind? It's time for a fresh start. We craft unique, innovative salad experiences that leave a lasting impact through freshness and flavor.
+            </p>
+        </section>
+
+        <section id="product-energy" class="product-section" data-item="item-energy">
+            <div class="product-info">
+                <h2 class="animated-headline">
+                    <div class="word"><span>ENERGY</span></div>
+                    <div class="word"><span class="accent">BOOST.</span></div>
+                </h2>
+                <p class="intro-text">Designed to fight fatigue with complex carbs and clean protein, keeping you sharp and focused all day long.</p>
+            </div>
+            <div class="product-image-container">
+                <div class="scanner-line"></div>
+                <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?salad,healthy,vibrant,greens')"></div>
+            </div>
+        </section>
+
+        <section id="product-wellness" class="product-section" data-item="item-wellness">
+            <div class="product-image-container">
+                 <div class="scanner-line"></div>
+                 <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?greens,vegetables,fresh,bowl')"></div>
+            </div>
+            <div class="product-info">
+                <h2 class="animated-headline">
+                    <div class="word"><span>WELLNESS</span></div>
+                    <div class="word"><span class="accent">PACK.</span></div>
+                </h2>
+                <p class="intro-text">High in fiber and nutrients but low in calories, our salads keep you full and satisfied, helping you reach your goals.</p>
+            </div>
+        </section>
+        
+        <section id="product-focus" class="product-section" data-item="item-focus">
+            <div class="product-info">
+                <h2 class="animated-headline">
+                    <div class="word"><span>FOCUS</span></div>
+                    <div class="word"><span class="accent">FUEL.</span></div>
+                </h2>
+                <p class="intro-text">Packed with Omega-3s and antioxidants to support brain health and keep you mentally sharp through the longest days.</p>
+            </div>
+             <div class="product-image-container">
+                 <div class="scanner-line"></div>
+                 <div class="product-image" style="background-image: url('https://source.unsplash.com/random/1200x1200/?food,bowl,healthy,avocado')"></div>
+            </div>
+        </section>
+
+        <footer>
+            <h2 class="animated-headline">
+                <div class="word"><span>LET'S</span></div>
+                <div class="word"><span class="accent">TALK.</span></div>
+            </h2>
+            <div class="contact-links">
+                <a href="mailto:6daysofsalad@gmail.com" class="contact-link">Email</a>
+                <a href="https://www.instagram.com/6daysofsalad" target="_blank" class="contact-link">Instagram</a>
+                <a href="https://wa.me/919211724290?text=Hi!%20What's%20on%20the%20menu%20today?" target="_blank" class="contact-link">WhatsApp</a>
+            </div>
+             <div class="footer-info">
+                 <p>H222, Sushant Shopping Arcade, Sushant Lok 1, Gurgaon</p>
+            </div>
+        </footer>
+    </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // --- 3D SCENE SETUP ---
+        // --- LIQUID BACKGROUND ANIMATION ---
+        const canvas = document.getElementById('canvas-bg');
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#animation-canvas'), alpha: true });
-        renderer.setPixelRatio(window.devicePixelRatio);
+        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.position.setZ(5);
 
-        // --- LIGHTING ---
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(5, 10, 7.5);
-        scene.add(directionalLight);
-        
-        // --- BACKGROUND RING ---
-        const ringGeometry = new THREE.TorusGeometry(3, 0.05, 16, 100);
-        const ringMaterial = new THREE.MeshStandardMaterial({ color: 0xcccccc, roughness: 0.8 });
-        const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-        scene.add(ring);
+        const uniforms = {
+            u_time: { type: 'f', value: 0.0 },
+            u_resolution: { type: 'v2', value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
+        };
 
-        // --- DEFORMING SMILEY SETUP ---
-        const smileyGroup = new THREE.Group();
-        const headGeometry = new THREE.SphereGeometry(1.5, 64, 64);
-        const headMaterial = new THREE.MeshStandardMaterial({ color: 0xFFEB3B, roughness: 0.4 });
-        const head = new THREE.Mesh(headGeometry, headMaterial);
-        
-        // Store original vertex positions for deformation
-        const originalPositions = headGeometry.attributes.position.clone();
+        const material = new THREE.ShaderMaterial({
+            uniforms: uniforms,
+            fragmentShader: `
+                uniform vec2 u_resolution;
+                uniform float u_time;
+                float random (in vec2 st) { return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123); }
+                float noise (in vec2 st) {
+                    vec2 i = floor(st);
+                    vec2 f = fract(st);
+                    float a = random(i);
+                    float b = random(i + vec2(1.0, 0.0));
+                    float c = random(i + vec2(0.0, 1.0));
+                    float d = random(i + vec2(1.0, 1.0));
+                    vec2 u = f*f*(3.0-2.0*f);
+                    return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+                }
+                void main() {
+                    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+                    st.x *= u_resolution.x/u_resolution.y;
+                    float n = noise(st * 4.0 + u_time * 0.1);
+                    vec3 color = mix(vec3(0.07, 0.07, 0.07), vec3(0.0, 0.2, 0.1), n);
+                    gl_FragColor = vec4(color, 1.0);
+                }
+            `
+        });
 
-        const eyeGeometry = new THREE.SphereGeometry(0.15, 32, 32);
-        const eyeMaterial = new THREE.MeshBasicMaterial({ color: 0x212121 });
-        const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
-        leftEye.position.set(-0.5, 0.3, 1.4);
-        const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
-        rightEye.position.set(0.5, 0.3, 1.4);
+        const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+        scene.add(mesh);
 
-        const mouthCurve = new THREE.CatmullRomCurve3([
-            new THREE.Vector3(-0.7, -0.5, 1.3),
-            new THREE.Vector3(0, -0.8, 1.3),
-            new THREE.Vector3(0.7, -0.5, 1.3),
-        ]);
-        const mouthGeometry = new THREE.TubeGeometry(mouthCurve, 20, 0.05, 8, false);
-        const mouthMaterial = new THREE.MeshBasicMaterial({ color: 0x212121 });
-        const mouth = new THREE.Mesh(mouthGeometry, mouthMaterial);
-
-        smileyGroup.add(head, leftEye, rightEye, mouth);
-        scene.add(smileyGroup);
-
-        // --- SCROLL ANIMATION LOGIC ---
-        const totalAnimSections = 6;
-        const sectionHeight = window.innerHeight;
-
-        function lerp(start, end, amount) {
-            return (1 - amount) * start + amount * end;
-        }
-
-        function update3DAnimation() {
-            const scrollY = window.scrollY;
-            const progress = Math.min(1, Math.max(0, scrollY / (sectionHeight * (totalAnimSections - 1))));
-
-            // Animate Ring
-            ring.rotation.x = progress * Math.PI * 0.5;
-            ring.rotation.y = progress * Math.PI;
-
-            // Animate Smiley
-            const deformation = Math.max(0, 1 - progress * 2); // Deforms at the start, becomes perfect at 50% scroll
-            const happiness = Math.max(0, (progress - 0.3) / 0.7); // Becomes happy after 30% scroll
-
-            // Deform Head
-            const headPositions = head.geometry.attributes.position;
-            const time = performance.now() * 0.001;
-            for (let i = 0; i < headPositions.count; i++) {
-                const ox = originalPositions.getX(i);
-                const oy = originalPositions.getY(i);
-                const oz = originalPositions.getZ(i);
-
-                // Simple noise-like effect for distortion
-                const noise = Math.sin(ox * 2 + time) * Math.sin(oy * 2 + time) * deformation * 0.1;
-                
-                headPositions.setX(i, ox + noise);
-                headPositions.setY(i, oy + noise);
-                headPositions.setZ(i, oz + noise);
-            }
-            head.geometry.attributes.position.needsUpdate = true;
-            head.geometry.computeVertexNormals();
-            
-            // Squash and stretch effect
-            head.scale.y = 1 - (deformation * 0.3);
-            head.scale.x = 1 + (deformation * 0.2);
-            head.scale.z = 1 + (deformation * 0.2);
-
-            // Animate Mouth
-            const mouthPoints = mouth.geometry.parameters.path.points;
-            const frownY = -0.8;
-            const smileY = -0.2;
-            mouthPoints[1].y = lerp(frownY, smileY, happiness);
-            const newMouthGeometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(mouthPoints), 20, 0.05, 8, false);
-            mouth.geometry.dispose();
-            mouth.geometry = newMouthGeometry;
-        }
-        window.addEventListener('scroll', update3DAnimation);
-
-        // --- RENDER LOOP ---
-        function animate() {
-            requestAnimationFrame(animate);
+        function animateBg() {
+            requestAnimationFrame(animateBg);
+            uniforms.u_time.value += 0.01;
             renderer.render(scene, camera);
         }
-        animate();
+        animateBg();
 
-        // --- RESIZE HANDLER ---
         window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+            uniforms.u_resolution.value.x = window.innerWidth;
+            uniforms.u_resolution.value.y = window.innerHeight;
         });
 
-        // --- VEGGIE GRID INTERSECTION OBSERVER ---
-        const veggieItems = document.querySelectorAll('.veggie-item');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
+        // --- TEXT & SCROLL ANIMATION LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Text animation setup
+            const animatedHeadlines = document.querySelectorAll('.animated-headline');
+            animatedHeadlines.forEach(headline => {
+                const text = headline.textContent.trim();
+                headline.innerHTML = ''; // Clear original text
+                const words = text.split(' ');
+                words.forEach(word => {
+                    const wordSpan = document.createElement('span');
+                    wordSpan.className = 'word';
+                    const isAccent = word.endsWith('.');
+                    const cleanWord = word.replace('.', '');
+                    
+                    const innerSpan = document.createElement('span');
+                    if (isAccent) innerSpan.className = 'accent';
+
+                    cleanWord.split('').forEach((char, i) => {
+                        const charSpan = document.createElement('span');
+                        charSpan.className = 'char';
+                        charSpan.textContent = char;
+                        charSpan.style.transitionDelay = `${i * 0.03}s`;
+                        innerSpan.appendChild(charSpan);
+                    });
+                    wordSpan.appendChild(innerSpan);
+                    headline.appendChild(wordSpan);
+                    headline.appendChild(document.createTextNode(' '));
+                });
+            });
+
+            // Intersection Observer for all animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.animated-headline, .intro-text').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Ticket logic with scanner
+            const ticket = document.getElementById('ticket');
+            const productSections = document.querySelectorAll('.product-section');
+            const purchasedItems = new Set();
+
+            const ticketObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const productSection = entry.target;
+                        const itemId = productSection.dataset.item;
+
+                        if (!purchasedItems.has(itemId)) {
+                            // 1. Trigger scanner animation
+                            productSection.classList.add('scanning');
+                            
+                            // 2. After scan, add to ticket
+                            setTimeout(() => {
+                                const ticketItem = document.getElementById(itemId);
+                                if (ticketItem) {
+                                    ticketItem.classList.add('purchased');
+                                    purchasedItems.add(itemId);
+                                }
+                                // Optional: remove scanning class after animation
+                                setTimeout(() => {
+                                   productSection.classList.remove('scanning');
+                                }, 500);
+                            }, 1000); // Must match CSS animation duration
+                        }
+                    }
+                });
+            }, { threshold: 0.6 });
+
+            productSections.forEach(section => {
+                ticketObserver.observe(section);
+            });
+            
+            // Show ticket after first scroll
+            const showTicketObserver = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting) {
+                    ticket.classList.add('visible');
+                } else {
+                    ticket.classList.remove('visible');
                 }
-            });
-        }, { threshold: 0.5 });
-        veggieItems.forEach(item => observer.observe(item));
-        
-        // --- CONTACT LINK ANIMATION ---
-        const contactLinks = document.querySelectorAll('.contact-link');
-        contactLinks.forEach(link => {
-            const icon = link.querySelector('.floating-icon');
-            link.addEventListener('mousemove', (e) => {
-                const rect = link.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                icon.style.left = `${x}px`;
-                icon.style.top = `${y}px`;
-            });
+            }, {rootMargin: "-100px 0px 0px 0px"});
+            showTicketObserver.observe(document.getElementById('product-energy'));
         });
+
     </script>
 </body>
 </html>
