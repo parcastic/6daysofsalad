@@ -144,32 +144,38 @@
         }
         .intro-text.in-view { opacity: 1; transform: translateY(0); }
 
-        /* --- Product Section with Parallax --- */
+        /* --- Product Section with Glassmorphism --- */
         .product-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
             align-items: center;
-            gap: 2rem;
+            justify-content: center;
             min-height: var(--section-height);
-        }
-        .product-image-container {
             position: relative;
-            width: 100%;
-            height: 70vh;
-            border-radius: 15px;
-            overflow: hidden;
         }
-        .product-image {
+        .product-background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-size: contain; /* Changed to contain */
-            background-repeat: no-repeat; /* Added no-repeat */
-            background-position: center;
-            background-attachment: fixed;
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            z-index: 1;
         }
         .product-info {
+            position: relative;
+            z-index: 2;
             padding: 2rem;
+            max-width: 50%;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
         }
+        
+        /* Alternating layout */
+        .product-section.align-left .product-info { margin-right: auto; }
+        .product-section.align-right .product-info { margin-left: auto; }
 
         /* --- Scanner Animation --- */
         .scanner-line {
@@ -182,7 +188,7 @@
             box-shadow: 0 0 15px var(--primary-green), 0 0 30px var(--primary-green);
             opacity: 0;
             transform: translateY(-10px);
-            z-index: 2;
+            z-index: 3;
         }
         .product-section.scanning .scanner-line {
             opacity: 1;
@@ -190,7 +196,7 @@
         }
         @keyframes scan-effect {
             from { transform: translateY(-10px); }
-            to { transform: translateY(calc(70vh - 4px)); }
+            to { transform: translateY(calc(100vh - 4px)); }
         }
 
         /* --- Billing Ticket --- */
@@ -198,15 +204,15 @@
             position: fixed;
             bottom: 60px;
             right: 60px;
-            width: 220px; /* Made smaller */
+            width: 220px;
             background: #f0f0f0;
             color: #333;
             font-family: monospace;
-            padding: 0.8rem; /* Adjusted padding */
+            padding: 0.8rem;
             z-index: 100;
             border-radius: 5px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            font-size: 0.8rem; /* Made smaller */
+            font-size: 0.8rem;
             line-height: 1.4;
             white-space: pre-wrap;
             opacity: 0;
@@ -227,7 +233,7 @@
             border-bottom: 1px dashed #333;
             padding: 0.5rem 0;
             margin: 0.5rem 0;
-            min-height: 100px; /* Adjusted height */
+            min-height: 100px;
         }
         .ticket-item {
             opacity: 0;
@@ -239,7 +245,7 @@
         .ticket-item.purchased {
             opacity: 1;
             transform: translateY(0);
-            max-height: 50px; /* Allow space for the item */
+            max-height: 50px;
             margin-bottom: 0.2rem;
         }
         .ticket-item .ref { font-size: 0.7rem; color: #666; }
@@ -339,14 +345,8 @@
             #frame-left, #frame-right { display: none; }
             #frame-top { padding-left: 50px; }
             #logo-container { left: 10px; }
-            .product-section { grid-template-columns: 1fr; }
-            .product-image-container { height: 50vh; }
-            @keyframes scan-effect {
-                to { transform: translateY(calc(50vh - 4px)); }
-            }
+            .product-section .product-info { max-width: 90%; }
             #ticket { right: 10px; bottom: 60px; width: 180px; font-size: 0.7rem; }
-            /* On mobile, disable fixed attachment for performance and usability */
-            .product-image { background-attachment: scroll; }
             .contact-link { font-size: 1.2rem; }
             .quiz-question-text { font-size: 1.5rem; }
         }
@@ -426,7 +426,9 @@
             </div>
         </section>
 
-        <section id="product-energy" class="product-section" data-item="ENERGY BOOST" data-ref="6DS-001">
+        <section id="product-energy" class="product-section align-left" data-item="ENERGY BOOST" data-ref="6DS-001">
+            <img src="https://images.unsplash.com/photo-1708792635872-37db9841487b" class="product-background-image">
+            <div class="scanner-line"></div>
             <div class="product-info">
                 <h2 class="animated-headline">
                     <div class="word"><span>ENERGY</span></div>
@@ -434,17 +436,11 @@
                 </h2>
                 <p class="intro-text">Designed to fight fatigue with complex carbs and clean protein, keeping you sharp and focused all day long.</p>
             </div>
-            <div class="product-image-container">
-                <div class="scanner-line"></div>
-                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1708792635872-37db9841487b')"></div>
-            </div>
         </section>
 
-        <section id="product-wellness" class="product-section" data-item="WELLNESS PACK" data-ref="6DS-002">
-            <div class="product-image-container">
-                 <div class="scanner-line"></div>
-                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1606307305578-9f4121dde6d9')"></div>
-            </div>
+        <section id="product-wellness" class="product-section align-right" data-item="WELLNESS PACK" data-ref="6DS-002">
+             <img src="https://images.unsplash.com/photo-1606307305578-9f4121dde6d9" class="product-background-image">
+             <div class="scanner-line"></div>
             <div class="product-info">
                 <h2 class="animated-headline">
                     <div class="word"><span>WELLNESS</span></div>
@@ -454,7 +450,9 @@
             </div>
         </section>
         
-        <section id="product-focus" class="product-section" data-item="FOCUS FUEL" data-ref="6DS-003">
+        <section id="product-focus" class="product-section align-left" data-item="FOCUS FUEL" data-ref="6DS-003">
+            <img src="https://images.unsplash.com/photo-1571935538821-8ecb6b4dea17" class="product-background-image">
+            <div class="scanner-line"></div>
             <div class="product-info">
                 <h2 class="animated-headline">
                     <div class="word"><span>FOCUS</span></div>
@@ -462,17 +460,11 @@
                 </h2>
                 <p class="intro-text">Packed with Omega-3s and antioxidants to support brain health and keep you mentally sharp through the longest days.</p>
             </div>
-             <div class="product-image-container">
-                 <div class="scanner-line"></div>
-                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1571935538821-8ecb6b4dea17')"></div>
-            </div>
         </section>
 
-        <section id="product-vibrant" class="product-section" data-item="VIBRANT PACK" data-ref="6DS-004">
-            <div class="product-image-container">
-                 <div class="scanner-line"></div>
-                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1561993098-270ea9e1711f')"></div>
-            </div>
+        <section id="product-vibrant" class="product-section align-right" data-item="VIBRANT PACK" data-ref="6DS-004">
+            <img src="https://images.unsplash.com/photo-1561993098-270ea9e1711f" class="product-background-image">
+            <div class="scanner-line"></div>
             <div class="product-info">
                 <h2 class="animated-headline">
                     <div class="word"><span>VIBRANT</span></div>
@@ -673,14 +665,18 @@
             });
             
             const footer = document.querySelector('footer');
+            const lastProduct = document.getElementById('product-vibrant');
             const showTicketObserver = new IntersectionObserver((entries) => {
                 if(entries[0].isIntersecting) {
                     ticket.classList.add('visible');
                 } else {
-                    ticket.classList.remove('visible');
+                    // Hide if scrolling up from the last product
+                    if (window.scrollY < lastProduct.offsetTop) {
+                        ticket.classList.remove('visible');
+                    }
                 }
-            }, {rootMargin: "-100px 0px 0px 0px"});
-            showTicketObserver.observe(document.getElementById('questionnaire-section'));
+            }, {rootMargin: "0px 0px -200px 0px"});
+            showTicketObserver.observe(lastProduct);
 
             // Observer to hide the ticket when footer is visible
             const hideTicketObserver = new IntersectionObserver((entries) => {
