@@ -144,6 +144,37 @@
         }
         .intro-text.in-view { opacity: 1; transform: translateY(0); }
 
+        /* --- NEW: Philosophy Section --- */
+        #philosophy-section {
+            height: 200vh; /* Taller to allow for scroll animation */
+            position: relative;
+        }
+        .philosophy-sticky-container {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        #philosophy-title {
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--primary-green);
+            position: absolute;
+        }
+        #philosophy-text {
+            max-width: 700px;
+            font-size: 1.5rem;
+            line-height: 1.7;
+            font-weight: 600;
+            opacity: 0;
+            position: absolute;
+        }
+
         /* --- Product Section with Glassmorphism --- */
         .product-section {
             display: flex;
@@ -396,7 +427,17 @@
             </p>
         </section>
 
-        <!-- QUESTIONNAIRE SECTION MOVED HERE -->
+        <!-- NEW PHILOSOPHY SECTION -->
+        <section id="philosophy-section">
+            <div class="philosophy-sticky-container">
+                <h2 id="philosophy-title">The 6-and-1 Philosophy</h2>
+                <div id="philosophy-text">
+                    <p>We believe wellness shouldn't be about restriction; it should be about balance. Our "6-and-1" approach is designed for the modern professional. Enjoy six days of delicious, nutrient-dense meals that fuel your body and mind, followed by one guilt-free day to savor whatever you crave. It's a sustainable, enjoyable path to a healthier you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUESTIONNAIRE SECTION -->
         <section id="questionnaire-section" class="content-section">
             <div class="container mx-auto px-6">
                 <h2 class="quiz-title">Find Your Perfect Dish</h2>
@@ -626,6 +667,28 @@
                 observer.observe(el);
             });
 
+            // --- Philosophy Scroll Animation ---
+            const philosophySection = document.getElementById('philosophy-section');
+            const philosophyTitle = document.getElementById('philosophy-title');
+            const philosophyText = document.getElementById('philosophy-text');
+            
+            window.addEventListener('scroll', () => {
+                const rect = philosophySection.getBoundingClientRect();
+                const scrollPercent = -rect.top / (philosophySection.offsetHeight - window.innerHeight);
+                const progress = Math.max(0, Math.min(1, scrollPercent));
+
+                if (progress >= 0 && progress <= 1) {
+                    const scale = 1 + progress * 15;
+                    const opacity = 1 - progress * 2;
+                    philosophyTitle.style.transform = `scale(${scale})`;
+                    philosophyTitle.style.opacity = opacity;
+
+                    const textOpacity = (progress - 0.5) * 2;
+                    philosophyText.style.opacity = textOpacity;
+                }
+            });
+
+
             // Ticket logic with scanner
             const ticket = document.getElementById('ticket');
             const ticketItemsContainer = document.getElementById('ticket-items');
@@ -656,7 +719,6 @@
                             }, 1000);
                         }
                     } 
-                    // REMOVED THE ELSE BLOCK TO MAKE ITEMS PERSISTENT
                 });
             }, { threshold: 0.6 });
 
@@ -670,7 +732,6 @@
                 if(entries[0].isIntersecting) {
                     ticket.classList.add('visible');
                 } else {
-                    // Hide if scrolling up from the last product
                     if (window.scrollY < lastProduct.offsetTop) {
                         ticket.classList.remove('visible');
                     }
@@ -678,7 +739,6 @@
             }, {rootMargin: "0px 0px -200px 0px"});
             showTicketObserver.observe(lastProduct);
 
-            // Observer to hide the ticket when footer is visible
             const hideTicketObserver = new IntersectionObserver((entries) => {
                 if(entries[0].isIntersecting) {
                     ticket.classList.add('hide-for-footer');
