@@ -12,12 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
     <!-- Google Analytics - Global Site Tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=PASTE_YOUR_GOOGLE_ANALYTICS_ID_HERE"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NQHK7PXTP2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'PASTE_YOUR_GOOGLE_ANALYTICS_ID_HERE');
+      gtag('config', 'G-NQHK7PXTP2');
     </script>
 
 
@@ -65,11 +65,23 @@
             font-size: 0.8rem;
         }
         #frame-top { top: 0; left: 0; width: 100%; height: 50px; overflow: hidden; padding-left: 50px;}
-        #frame-bottom { bottom: 0; left: 0; width: 100%; height: 50px; }
+        /* REMOVED fixed position from bottom frame */
+        #frame-bottom {
+            width: 100%;
+            height: 50px;
+            background-color: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
         #frame-left { top: 0; left: 0; width: 50px; height: 100%; }
         #frame-right { top: 0; right: 0; width: 50px; height: 100%; }
         
-        #logo-container {
+        /* --- Logo Styling and Animation --- */
+        #logo-container { /* This is the small, fixed logo */
             position: fixed;
             top: 0;
             left: 0;
@@ -79,11 +91,31 @@
             align-items: center;
             justify-content: center;
             z-index: 51;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.3s ease;
+        }
+        #logo-container.visible {
+            opacity: 1;
         }
         #logo-container img {
             max-width: 30px;
             height: auto;
         }
+        
+        #hero-logo { /* This is the large, animating logo */
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            z-index: 11;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+         #hero-logo img {
+            width: clamp(150px, 30vw, 400px);
+            height: auto;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
 
         .vertical-text { writing-mode: vertical-rl; transform: rotate(180deg); }
         
@@ -144,9 +176,9 @@
         }
         .intro-text.in-view { opacity: 1; transform: translateY(0); }
 
-        /* --- NEW: Philosophy Section --- */
+        /* --- Philosophy Section --- */
         #philosophy-section {
-            height: 200vh; /* Taller to allow for scroll animation */
+            height: 200vh;
             position: relative;
         }
         .philosophy-sticky-container {
@@ -189,7 +221,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures the image covers the area without distortion */
+            object-fit: cover;
             z-index: 1;
         }
         .product-info {
@@ -204,7 +236,6 @@
             border-radius: 15px;
         }
         
-        /* Alternating layout */
         .product-section.align-left .product-info { margin-right: auto; }
         .product-section.align-right .product-info { margin-left: auto; }
 
@@ -380,6 +411,7 @@
             #ticket { right: 10px; bottom: 60px; width: 180px; font-size: 0.7rem; }
             .contact-link { font-size: 1.2rem; }
             .quiz-question-text { font-size: 1.5rem; }
+            #hero-logo { right: 5%; }
         }
         
     </style>
@@ -396,9 +428,7 @@
             <span>FRESH DAILY</span><span>•</span><span>HIGH VIBE</span><span>•</span><span>HEALTHY FUEL</span><span>•</span><span>GURGAON</span>
         </div>
     </div>
-    <div id="frame-bottom" class="frame">
-        <p>&copy; 2025 - 6 DAYS OF SALAD</p>
-    </div>
+    
     <div id="frame-left" class="frame">
         <p class="vertical-text">Est. 2025</p>
     </div>
@@ -417,6 +447,9 @@
 
     <div id="wrapper">
         <section id="landing" class="content-section">
+             <div id="hero-logo">
+                <img src="images/logo.png" alt="6 Days of Salad Logo" onerror="this.style.display='none'">
+            </div>
             <h1 class="animated-headline">
                 <div class="word"><span>Your</span></div>
                 <div class="word"><span>Week,</span></div>
@@ -529,6 +562,9 @@
                  <p>H222, Sushant Shopping Arcade, Sushant Lok 1, Gurgaon</p>
             </div>
         </footer>
+    </div>
+    <div id="frame-bottom" class="frame">
+        <p>&copy; 2025 - 6 DAYS OF SALAD</p>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -838,6 +874,24 @@
             });
 
             renderQuestion(); // Initial render
+
+            // --- Logo Animation ---
+            const heroLogo = document.getElementById('hero-logo');
+            const fixedLogo = document.getElementById('logo-container');
+            const landingSection = document.getElementById('landing');
+
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                const heroHeight = landingSection.offsetHeight;
+
+                if (scrollPosition > heroHeight / 2) {
+                    fixedLogo.classList.add('visible');
+                    heroLogo.style.opacity = '0';
+                } else {
+                    fixedLogo.classList.remove('visible');
+                    heroLogo.style.opacity = '1';
+                }
+            });
         });
 
     </script>
