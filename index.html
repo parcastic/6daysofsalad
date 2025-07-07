@@ -161,8 +161,9 @@
         }
         .product-image {
             width: 100%;
-            height: 100%; /* Changed from 120% to fit the box */
-            background-size: cover;
+            height: 100%;
+            background-size: contain; /* Changed to contain */
+            background-repeat: no-repeat; /* Added no-repeat */
             background-position: center;
             background-attachment: fixed;
         }
@@ -662,18 +663,8 @@
                                 }, 500);
                             }, 1000);
                         }
-                    } else {
-                        if (purchasedItems.has(itemName)) {
-                            const itemToRemove = purchasedItems.get(itemName);
-                            itemToRemove.classList.remove('purchased');
-                            setTimeout(() => {
-                                if(itemToRemove.parentNode) {
-                                    itemToRemove.parentNode.removeChild(itemToRemove);
-                                }
-                            }, 400);
-                            purchasedItems.delete(itemName);
-                        }
-                    }
+                    } 
+                    // REMOVED THE ELSE BLOCK TO MAKE ITEMS PERSISTENT
                 });
             }, { threshold: 0.6 });
 
