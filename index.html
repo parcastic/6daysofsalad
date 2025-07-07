@@ -161,7 +161,7 @@
         }
         .product-image {
             width: 100%;
-            height: 120%; /* Taller than container for parallax */
+            height: 100%; /* Changed from 120% to fit the box */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -216,9 +216,9 @@
             opacity: 1;
             transform: translateY(0);
         }
-        #ticket.unstick {
-            position: absolute;
-            bottom: 50px; /* Align with bottom frame */
+        #ticket.hide-for-footer {
+            opacity: 0;
+            transform: translateY(20px);
         }
         #ticket-header, #ticket-footer { font-weight: bold; text-align: center; }
         #ticket-items {
@@ -229,15 +229,17 @@
             min-height: 100px; /* Adjusted height */
         }
         .ticket-item {
-            display: none; /* Hidden by default */
+            opacity: 0;
+            transform: translateY(10px);
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-out;
         }
         .ticket-item.purchased {
-            display: block;
-            animation: print-effect 0.3s ease-out;
-        }
-        @keyframes print-effect {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            opacity: 1;
+            transform: translateY(0);
+            max-height: 50px; /* Allow space for the item */
+            margin-bottom: 0.2rem;
         }
         .ticket-item .ref { font-size: 0.7rem; color: #666; }
 
@@ -376,22 +378,7 @@
     <div id="ticket">
         <div id="ticket-header">6 DAYS OF SALAD</div>
         <div id="ticket-items">
-            <div id="item-energy" class="ticket-item">
-                ENERGY BOOST x1<br>
-                <span class="ref">REF: 6DS-001</span>
-            </div>
-            <div id="item-wellness" class="ticket-item">
-                WELLNESS PACK x1<br>
-                <span class="ref">REF: 6DS-002</span>
-            </div>
-             <div id="item-focus" class="ticket-item">
-                FOCUS FUEL x1<br>
-                <span class="ref">REF: 6DS-003</span>
-            </div>
-            <div id="item-vibrant" class="ticket-item">
-                VIBRANT PACK x1<br>
-                <span class="ref">REF: 6DS-004</span>
-            </div>
+            <!-- Items will be added here by JS -->
         </div>
         <div id="ticket-footer">Thanks for your visit!</div>
     </div>
@@ -399,72 +386,16 @@
     <div id="wrapper">
         <section id="landing" class="content-section">
             <h1 class="animated-headline">
-                <div class="word"><span>FRESH.</span></div>
-                <div class="word"><span class="accent">FAST.</span></div>
-                <div class="word"><span>FUEL.</span></div>
+                <div class="word"><span>Your</span></div>
+                <div class="word"><span>Week,</span></div>
+                <div class="word"><span class="accent">Reimagined.</span></div>
             </h1>
             <p class="intro-text">
-                Tired of the daily grind? It's time for a fresh start. We craft unique, innovative salad experiences that leave a lasting impact through freshness and flavor.
+                6 days of healthy eating. 1 guilt-free day. Perfect balance delivered.
             </p>
         </section>
 
-        <section id="product-energy" class="product-section" data-item="item-energy">
-            <div class="product-info">
-                <h2 class="animated-headline">
-                    <div class="word"><span>ENERGY</span></div>
-                    <div class="word"><span class="accent">BOOST.</span></div>
-                </h2>
-                <p class="intro-text">Designed to fight fatigue with complex carbs and clean protein, keeping you sharp and focused all day long.</p>
-            </div>
-            <div class="product-image-container">
-                <div class="scanner-line"></div>
-                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1708792635872-37db9841487b')"></div>
-            </div>
-        </section>
-
-        <section id="product-wellness" class="product-section" data-item="item-wellness">
-            <div class="product-image-container">
-                 <div class="scanner-line"></div>
-                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1606307305578-9f4121dde6d9')"></div>
-            </div>
-            <div class="product-info">
-                <h2 class="animated-headline">
-                    <div class="word"><span>WELLNESS</span></div>
-                    <div class="word"><span class="accent">PACK.</span></div>
-                </h2>
-                <p class="intro-text">High in fiber and nutrients but low in calories, our salads keep you full and satisfied, helping you reach your goals.</p>
-            </div>
-        </section>
-        
-        <section id="product-focus" class="product-section" data-item="item-focus">
-            <div class="product-info">
-                <h2 class="animated-headline">
-                    <div class="word"><span>FOCUS</span></div>
-                    <div class="word"><span class="accent">FUEL.</span></div>
-                </h2>
-                <p class="intro-text">Packed with Omega-3s and antioxidants to support brain health and keep you mentally sharp through the longest days.</p>
-            </div>
-             <div class="product-image-container">
-                 <div class="scanner-line"></div>
-                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1571935538821-8ecb6b4dea17')"></div>
-            </div>
-        </section>
-
-        <section id="product-vibrant" class="product-section" data-item="item-vibrant">
-            <div class="product-image-container">
-                 <div class="scanner-line"></div>
-                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1561993098-270ea9e1711f')"></div>
-            </div>
-            <div class="product-info">
-                <h2 class="animated-headline">
-                    <div class="word"><span>VIBRANT</span></div>
-                    <div class="word"><span class="accent">PACK.</span></div>
-                </h2>
-                <p class="intro-text">A colorful mix of the freshest ingredients to delight your senses and nourish your body from the inside out.</p>
-            </div>
-        </section>
-        
-        <!-- QUESTIONNAIRE SECTION -->
+        <!-- QUESTIONNAIRE SECTION MOVED HERE -->
         <section id="questionnaire-section" class="content-section">
             <div class="container mx-auto px-6">
                 <h2 class="quiz-title">Find Your Perfect Dish</h2>
@@ -494,6 +425,62 @@
             </div>
         </section>
 
+        <section id="product-energy" class="product-section" data-item="ENERGY BOOST" data-ref="6DS-001">
+            <div class="product-info">
+                <h2 class="animated-headline">
+                    <div class="word"><span>ENERGY</span></div>
+                    <div class="word"><span class="accent">BOOST.</span></div>
+                </h2>
+                <p class="intro-text">Designed to fight fatigue with complex carbs and clean protein, keeping you sharp and focused all day long.</p>
+            </div>
+            <div class="product-image-container">
+                <div class="scanner-line"></div>
+                <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1708792635872-37db9841487b')"></div>
+            </div>
+        </section>
+
+        <section id="product-wellness" class="product-section" data-item="WELLNESS PACK" data-ref="6DS-002">
+            <div class="product-image-container">
+                 <div class="scanner-line"></div>
+                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1606307305578-9f4121dde6d9')"></div>
+            </div>
+            <div class="product-info">
+                <h2 class="animated-headline">
+                    <div class="word"><span>WELLNESS</span></div>
+                    <div class="word"><span class="accent">PACK.</span></div>
+                </h2>
+                <p class="intro-text">High in fiber and nutrients but low in calories, our salads keep you full and satisfied, helping you reach your goals.</p>
+            </div>
+        </section>
+        
+        <section id="product-focus" class="product-section" data-item="FOCUS FUEL" data-ref="6DS-003">
+            <div class="product-info">
+                <h2 class="animated-headline">
+                    <div class="word"><span>FOCUS</span></div>
+                    <div class="word"><span class="accent">FUEL.</span></div>
+                </h2>
+                <p class="intro-text">Packed with Omega-3s and antioxidants to support brain health and keep you mentally sharp through the longest days.</p>
+            </div>
+             <div class="product-image-container">
+                 <div class="scanner-line"></div>
+                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1571935538821-8ecb6b4dea17')"></div>
+            </div>
+        </section>
+
+        <section id="product-vibrant" class="product-section" data-item="VIBRANT PACK" data-ref="6DS-004">
+            <div class="product-image-container">
+                 <div class="scanner-line"></div>
+                 <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1561993098-270ea9e1711f')"></div>
+            </div>
+            <div class="product-info">
+                <h2 class="animated-headline">
+                    <div class="word"><span>VIBRANT</span></div>
+                    <div class="word"><span class="accent">PACK.</span></div>
+                </h2>
+                <p class="intro-text">A colorful mix of the freshest ingredients to delight your senses and nourish your body from the inside out.</p>
+            </div>
+        </section>
+        
         <footer>
             <h2 class="animated-headline">
                 <div class="word"><span>LET'S</span></div>
@@ -648,27 +635,43 @@
 
             // Ticket logic with scanner
             const ticket = document.getElementById('ticket');
+            const ticketItemsContainer = document.getElementById('ticket-items');
             const productSections = document.querySelectorAll('.product-section');
-            const purchasedItems = new Set();
+            const purchasedItems = new Map();
 
             const ticketObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const productSection = entry.target;
-                        const itemId = productSection.dataset.item;
+                    const productSection = entry.target;
+                    const itemName = productSection.dataset.item;
+                    const itemRef = productSection.dataset.ref;
 
-                        if (!purchasedItems.has(itemId)) {
+                    if (entry.isIntersecting) {
+                        if (!purchasedItems.has(itemName)) {
                             productSection.classList.add('scanning');
                             setTimeout(() => {
-                                const ticketItem = document.getElementById(itemId);
-                                if (ticketItem) {
-                                    ticketItem.classList.add('purchased');
-                                    purchasedItems.add(itemId);
-                                }
+                                const ticketItem = document.createElement('div');
+                                ticketItem.classList.add('ticket-item');
+                                ticketItem.innerHTML = `${itemName} x1<br><span class="ref">REF: ${itemRef}</span>`;
+                                ticketItemsContainer.appendChild(ticketItem);
+                                setTimeout(() => ticketItem.classList.add('purchased'), 50);
+                                
+                                purchasedItems.set(itemName, ticketItem);
+
                                 setTimeout(() => {
                                    productSection.classList.remove('scanning');
                                 }, 500);
                             }, 1000);
+                        }
+                    } else {
+                        if (purchasedItems.has(itemName)) {
+                            const itemToRemove = purchasedItems.get(itemName);
+                            itemToRemove.classList.remove('purchased');
+                            setTimeout(() => {
+                                if(itemToRemove.parentNode) {
+                                    itemToRemove.parentNode.removeChild(itemToRemove);
+                                }
+                            }, 400);
+                            purchasedItems.delete(itemName);
                         }
                     }
                 });
@@ -686,17 +689,17 @@
                     ticket.classList.remove('visible');
                 }
             }, {rootMargin: "-100px 0px 0px 0px"});
-            showTicketObserver.observe(document.getElementById('product-energy'));
+            showTicketObserver.observe(document.getElementById('questionnaire-section'));
 
-            // Observer to unstick the ticket when footer is visible
-            const unstickTicketObserver = new IntersectionObserver((entries) => {
+            // Observer to hide the ticket when footer is visible
+            const hideTicketObserver = new IntersectionObserver((entries) => {
                 if(entries[0].isIntersecting) {
-                    ticket.classList.add('unstick');
+                    ticket.classList.add('hide-for-footer');
                 } else {
-                    ticket.classList.remove('unstick');
+                    ticket.classList.remove('hide-for-footer');
                 }
             }, { threshold: 0.1 });
-            unstickTicketObserver.observe(footer);
+            hideTicketObserver.observe(footer);
 
 
             // --- QUIZ LOGIC ---
